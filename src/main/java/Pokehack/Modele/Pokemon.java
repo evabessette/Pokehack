@@ -17,6 +17,10 @@ public class Pokemon {
     public Pokemon() {
     }
 
+    public int getTotalStats() {
+        return hp + attack + defense + special_attack + special_defense + speed;
+    }
+
     @Override
     public String toString() {
         return "Pokemon{" +
@@ -36,69 +40,3 @@ public class Pokemon {
     }
 
 }
-
-
-//enum TypePokemad {
-//    NORMAL
-//    FEU
-//            EAU
-//    PLANTE
-//            ELECTRIK
-//    GLACE
-//            COMBAT
-//    POISON
-//            SOL
-//    VOL
-//            PSY
-//    INSECTE
-//            ROCHE
-//    SPECTRE
-//            DRAGON
-//    TENEBRES
-//            ACIER
-//    FEE
-//    }
-//
-//enum Rarete {
-//    COMMUN
-//    RARE
-//    LEGENDAIRE
-//    }
-
-//model Dresseur {
-//id Int  @id @default(autoincrement())
-//pseudo String @unique
-//ville String?
-//badge Int? @default(0)
-//createdAt DateTime @default(now())
-//pokemads Pokemad[]
-//}
-
-//model Pokemad {
-//id Int @id @default(autoincrement())
-//numeroPokedex Int @unique
-//nom String
-//pv Int
-//taille Float
-//poids Float
-//typePrincipal TypePokemad
-//typeSecondaire TypePokemad?
-//rarete Rarete
-//imageUrl String?
-//captureDate DateTime @default(now())
-//dresseurId Int?
-//dresseur Dresseur? @relation(fields: [dresseurId], references: [id])
-//        }
-//
-//enum Role {
-//    USER
-//    ADMIN
-//    }
-//
-//model User {
-//id String@id @default(uuid())
-//email String @unique
-//password String
-//role Role @default(USER)
-//createdAt DateTime @default(now())
-//        }
