@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS pokemons (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    image_url TEXT,
+    primary_type VARCHAR(50) NOT NULL,
+    secondary_type VARCHAR(50),
+    hp INTEGER NOT NULL DEFAULT 0,
+    attack INTEGER NOT NULL DEFAULT 0,
+    defense INTEGER NOT NULL DEFAULT 0,
+    special_attack INTEGER NOT NULL DEFAULT 0,
+    special_defense INTEGER NOT NULL DEFAULT 0,
+    speed INTEGER NOT NULL DEFAULT 0,
+    captured_at TIMESTAMP DEFAULT NOW()
+)
