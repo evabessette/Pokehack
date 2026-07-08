@@ -51,6 +51,17 @@ public class PokemonViewFx {
         recherche = new HBox();
         card = new VBox();
 
+        statistiquesTitre = new Label();
+        typePokemon = new Label();
+        nomPokemon = new Label();
+        idPokemon = new Label();
+        hp = new Label();
+        attack = new Label();
+        defense = new Label();
+        speed = new Label();
+        weight = new Label();
+        height = new Label();
+
 
 
     }
