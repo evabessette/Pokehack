@@ -22,6 +22,16 @@ public class MainFx extends Application {
         PokemonController ctrl = new PokemonController(view);
 
         Scene scene = new Scene(view.getRoot(), 900, 500);
+        scene.getStylesheets().add(
+                getClass().getResource("/style.css").toExternalForm()
+        );
+        stage.setTitle("Pokédex - Recherche de Pokémon");
+        stage.setScene(scene);
+        stage.show();
 
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
