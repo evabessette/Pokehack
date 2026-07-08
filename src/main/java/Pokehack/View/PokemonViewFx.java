@@ -1,6 +1,8 @@
 package Pokehack.View;
 
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -23,9 +25,9 @@ public class PokemonViewFx {
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
     public final Label messageErreur;
+    public final Button catchButton;
 
     private final VBox racine;
-    private final VBox intro;
     private final HBox measurements;
     private final VBox stats;
     private final HBox recherche;
@@ -41,17 +43,15 @@ public class PokemonViewFx {
         champNomPokemon = new TextField();
         champNomPokemon.setPromptText("nom d'un Pokémon");
         HBox.setHgrow(champNomPokemon, Priority.ALWAYS);
+        champNomPokemon.getStyleClass().add("champ-nom-pokemon");
+
+        catchButton = new Button("Attraper");
+        catchButton.getStyleClass().add("card");
 
         messageErreur = new Label();
+        messageErreur.getStyleClass().add("message-erreur");
 
-        racine = new VBox();
-        intro = new VBox();
-        measurements = new HBox();
-        stats = new VBox();
-        recherche = new HBox();
-        card = new VBox();
-
-        statistiquesTitre = new Label();
+        statistiquesTitre = new Label("Statistiques");
         typePokemon = new Label();
         nomPokemon = new Label();
         idPokemon = new Label();
@@ -61,6 +61,17 @@ public class PokemonViewFx {
         speed = new Label();
         weight = new Label();
         height = new Label();
+
+        // Containers
+
+        measurements = new HBox(16, weight, height);
+        stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
+        recherche = new HBox(16, champNomPokemon, catchButton);
+        card = new VBox(10, nomPokemon, imagePokemon, idPokemon, typePokemon, measurements, stats);
+        racine = new VBox(card, recherche, messageErreur);
+        racine.setPadding(new Insets(24));
+
+
 
 
 
