@@ -25,6 +25,11 @@ public class PokemonViewFx {
     public final Label messageErreur;
 
     private final VBox racine;
+    private final VBox intro;
+    private final HBox measurements;
+    private final VBox stats;
+    private final HBox recherche;
+
 
     public PokemonViewFx() {
 
@@ -39,6 +44,12 @@ public class PokemonViewFx {
         messageErreur = new Label();
 
         racine = new VBox();
+        intro = new VBox();
+        measurements = new HBox();
+        stats = new VBox();
+        recherche = new HBox();
+
+
 
     }
 
