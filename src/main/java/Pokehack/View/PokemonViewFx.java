@@ -4,6 +4,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class PokemonViewFx {
@@ -25,6 +27,16 @@ public class PokemonViewFx {
     private final VBox racine;
 
     public PokemonViewFx() {
+
+        imagePokemon = new ImageView();
+        imagePokemon.setFitWidth(200);
+        imagePokemon.setPreserveRatio(true);
+
+        champNomPokemon = new TextField();
+        champNomPokemon.setPromptText("nom d'un Pokémon");
+        HBox.setHgrow(champNomPokemon, Priority.ALWAYS);
+
+        messageErreur = new Label();
 
     }
 
