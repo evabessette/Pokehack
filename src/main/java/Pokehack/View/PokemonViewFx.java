@@ -38,6 +38,8 @@ public class PokemonViewFx {
 
         messageErreur = new Label();
 
+        racine = new VBox();
+
     }
 
     public Parent getRoot(){
