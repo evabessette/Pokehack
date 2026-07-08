@@ -29,6 +29,7 @@ public class PokemonViewFx {
     private final HBox measurements;
     private final VBox stats;
     private final HBox recherche;
+    private final VBox card;
 
 
     public PokemonViewFx() {
@@ -48,6 +49,7 @@ public class PokemonViewFx {
         measurements = new HBox();
         stats = new VBox();
         recherche = new HBox();
+        card = new VBox();
 
 
 
