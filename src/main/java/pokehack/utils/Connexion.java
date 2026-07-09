@@ -1,4 +1,4 @@
-package pokehack.Utils;
+package pokehack.utils;
 
 import java.sql.Connection;
 import java.sql.SQLException;

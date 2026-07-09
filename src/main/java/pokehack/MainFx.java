@@ -1,6 +1,6 @@
 package pokehack;
 
-import pokehack.View.PokemonViewFx;
+import pokehack.view.PokemonViewFx;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

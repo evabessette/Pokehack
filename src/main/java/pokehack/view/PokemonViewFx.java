@@ -1,4 +1,4 @@
-package pokehack.View;
+package pokehack.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
