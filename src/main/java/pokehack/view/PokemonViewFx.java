@@ -17,18 +17,21 @@ public class PokemonViewFx {
 
     public final Label nomPokemon, idPokemon, typePokemon;
     public final Label hp, attack, defense, speed;
-    public final Label weight, height;
+//    public final Label weight, height;
     public final Label statistiquesTitre, messageErreur;
+    public final Label weightLabel, heightLabel;
+    public final Label weightValue, heightValue;
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
     public final Button catchButton;
 
     private final VBox racine;
     private final HBox measurements;
-//    private final VBox stats;
     private final HBox recherche;
     private final VBox card;
     private final VBox stats;
+    private final VBox weight;
+    private final VBox height;
 
     private final HBox statsBarHP;
     public final ProgressBar hpProgress;
@@ -92,8 +95,14 @@ public class PokemonViewFx {
         spdNumber = new Label("60");
 
 
-        weight = new Label("Poids");
-        height = new Label("Taille");
+        weightLabel = new Label("Weight");
+        heightLabel = new Label("Height");
+
+        weightValue = new Label("6.5 kg");
+        heightValue = new Label("50 cm");
+
+        weight = new VBox(weightLabel, weightValue);
+        height = new VBox(heightLabel, heightValue);
 
         // Containers
 
