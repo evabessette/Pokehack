@@ -79,19 +79,19 @@ public class PokemonViewFx {
         idPokemon.getStyleClass().add("id-pokemon");
 
         hp = new Label("HP");
-        hpProgress = new ProgressBar();
+        hpProgress = new ProgressBar(0.50);
         hpNumber = new Label("50");
 
         attack = new Label("ATK");
-        atkProgress = new ProgressBar();
+        atkProgress = new ProgressBar(0.40);
         atkNumber = new Label("40");
 
         defense = new Label("DEF");
-        defProgress = new ProgressBar();
+        defProgress = new ProgressBar(0.30);
         defNumber = new Label("30");
 
         speed = new Label("SPD");
-        spdProgress = new ProgressBar();
+        spdProgress = new ProgressBar(0.60);
         spdNumber = new Label("60");
 
 
