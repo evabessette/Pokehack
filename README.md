@@ -1,4 +1,4 @@
-# Pokehack
+# pokehack
 
 
 ## DATABASE

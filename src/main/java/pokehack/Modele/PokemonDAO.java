@@ -1,6 +1,6 @@
-package Pokehack.Modele;
+package pokehack.Modele;
 
-import Pokehack.Utils.Connexion;
+import pokehack.Utils.Connexion;
 
 import java.sql.Connection;
 import java.sql.SQLException;

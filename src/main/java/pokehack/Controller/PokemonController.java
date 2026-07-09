@@ -1,4 +1,4 @@
-package Pokehack.Controller;
+package pokehack.Controller;
 
 public class PokemonController {
 }

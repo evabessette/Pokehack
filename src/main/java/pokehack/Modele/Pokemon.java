@@ -1,4 +1,4 @@
-package Pokehack.Modele;
+package pokehack.Modele;
 
 public class Pokemon {
     public String id ;
