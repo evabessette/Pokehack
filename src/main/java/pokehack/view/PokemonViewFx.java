@@ -81,6 +81,7 @@ public class PokemonViewFx {
         messageErreur.getStyleClass().add("message-erreur");
 
         statistiquesTitre = new Label("Statistiques");
+        statistiquesTitre.getStyleClass().add("statistiques-titre");
         typePokemon = new Label("Plante");
         typePokemon.getStyleClass().add("type-pokemon");
         nomPokemon = new Label("Bulbizarre");
@@ -115,8 +116,13 @@ public class PokemonViewFx {
         weightValue = new Label("6.5 kg");
         heightValue = new Label("50 cm");
 
-        weight = new VBox(weightLabel, weightValue);
-        height = new VBox(heightLabel, heightValue);
+        weight = new VBox(weightValue, weightLabel);
+        height = new VBox(heightValue, heightLabel);
+        weightValue.getStyleClass().add("weight-value");
+        heightValue.getStyleClass().add("height-value");
+        weightLabel.getStyleClass().add("weight-label");
+        heightLabel.getStyleClass().add("height-label");
+
 
         weight.getStyleClass().add("measurement-box");
         height.getStyleClass().add("measurement-box");

@@ -1,12 +1,12 @@
 /*.root { -fx-border-color: red; }*/
 
-.card, .stats, .measurements, .recherche { -fx-border-color: red; }
+/*.card, .stats, .measurements, .recherche { -fx-border-color: red; }*/
 
-.nom-pokemon { -fx-font-size: xx-large; }
+.nom-pokemon { -fx-font-size: 40px; }
 
-.measurement-box {
-    -fx-border-color: red;
-}
+/*.measurement-box {*/
+/*    -fx-border-color: red;*/
+/*}*/
 
 .hp-progress .bar {
     -fx-background-color: red;
@@ -24,10 +24,30 @@
     -fx-background-color: limegreen;
 }
 
+.statistiques-titre {
+    -fx-font-weight: bold;
+}
+
+.id-pokemon {
+    -fx-font-weight: bold;
+}
+
+
 .type-pokemon {
     -fx-background-color: #78c850;
     -fx-text-fill: white;
     -fx-padding: 4 10 4 10;
     -fx-background-radius: 12;
     -fx-font-weight: bold;
+}
+
+.weight-value,
+.height-value {
+    -fx-background-color: #8e8e8e;
+    -fx-font-size: x-large;
+    -fx-text-fill: white;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 4 10 4 10;
+
 }
