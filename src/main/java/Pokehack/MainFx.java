@@ -12,7 +12,7 @@ public class MainFx extends Application {
     public void start(Stage stage){
         PokemonViewFx view = new PokemonViewFx();
 
-        PokemonController ctrl = new PokemonController(view);
+//        PokemonController ctrl = new PokemonController(view);
 
         Scene scene = new Scene(view.getRoot(), 900, 500);
         scene.getStylesheets().add(

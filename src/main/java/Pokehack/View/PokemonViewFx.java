@@ -1,6 +1,7 @@
 package Pokehack.View;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,9 +66,11 @@ public class PokemonViewFx {
         // Containers
 
         measurements = new HBox(16, weight, height);
+        measurements.setAlignment(Pos.CENTER);
         stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
         recherche = new HBox(16, champNomPokemon, catchButton);
         card = new VBox(10, nomPokemon, imagePokemon, idPokemon, typePokemon, measurements, stats);
+        card.setAlignment(Pos.CENTER);
         racine = new VBox(card, recherche, messageErreur);
         racine.setPadding(new Insets(24));
 
