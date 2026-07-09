@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,9 +25,26 @@ public class PokemonViewFx {
 
     private final VBox racine;
     private final HBox measurements;
-    private final VBox stats;
+//    private final VBox stats;
     private final HBox recherche;
     private final VBox card;
+    private final VBox stats;
+
+    private final HBox statsBarHP;
+    public final ProgressBar hpProgress;
+    public final Label hpNumber;
+
+    private final HBox statsBarATK;
+    public final ProgressBar atkProgress;
+    public final Label atkNumber;
+
+    private final HBox statsBarDEF;
+    public final ProgressBar defProgress;
+    public final Label defNumber;
+
+    private final HBox statsBarSPD;
+    public final ProgressBar spdProgress;
+    public final Label spdNumber;
 
 
     public PokemonViewFx() {
@@ -56,10 +74,24 @@ public class PokemonViewFx {
         nomPokemon.getStyleClass().add("nom-pokemon");
         idPokemon = new Label("#01");
         idPokemon.getStyleClass().add("id-pokemon");
+
         hp = new Label("HP");
+        hpProgress = new ProgressBar();
+        hpNumber = new Label("50");
+
         attack = new Label("ATK");
+        atkProgress = new ProgressBar();
+        atkNumber = new Label("40");
+
         defense = new Label("DEF");
+        defProgress = new ProgressBar();
+        defNumber = new Label("30");
+
         speed = new Label("SPD");
+        spdProgress = new ProgressBar();
+        spdNumber = new Label("60");
+
+
         weight = new Label("Poids");
         height = new Label("Taille");
 
@@ -67,15 +99,27 @@ public class PokemonViewFx {
 
         measurements = new HBox(16, weight, height);
         measurements.setAlignment(Pos.CENTER);
-        stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
+//        stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
+        statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
+        statsBarHP.setAlignment(Pos.CENTER);
+        statsBarATK = new HBox(10, attack, atkProgress, atkNumber);
+        statsBarATK.setAlignment(Pos.CENTER);
+        statsBarDEF = new HBox(10, defense, defProgress, defNumber);
+        statsBarDEF.setAlignment(Pos.CENTER);
+        statsBarSPD = new HBox(10, speed, spdProgress, spdNumber);
+        statsBarSPD.setAlignment(Pos.CENTER);
+
+        stats = new VBox(10, statsBarHP, statsBarATK, statsBarDEF, statsBarSPD);
+        stats.setAlignment(Pos.CENTER);
+
         recherche = new HBox(16, champNomPokemon, catchButton);
         card = new VBox(10, nomPokemon, imagePokemon, idPokemon, typePokemon, measurements, stats);
         card.setAlignment(Pos.CENTER);
-        racine = new VBox(card, recherche, messageErreur);
+        racine = new VBox(recherche, card, messageErreur);
         racine.setPadding(new Insets(24));
 
         card.getStyleClass().add("card");
-        stats.getStyleClass().add("stats");
+        statsBarHP.getStyleClass().add("stats-bar-hp");
         measurements.getStyleClass().add("measurements");
         recherche.getStyleClass().add("recherche");
         racine.getStyleClass().add("racine");
