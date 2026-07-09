@@ -186,8 +186,11 @@ public class PokemonViewFx {
         // Horizontal layout
 
         Label inventaireTitre = new Label ("Pokémon attrapés");
+        inventaireTitre.getStyleClass().add("inventaire-titre");
+
 
         VBox listePokemon = new VBox(8, new Label("Bulbizarre"), new Label("Salamèche"), new Label("Carapuce"));
+        listePokemon.setAlignment(Pos.CENTER);
 
         inventairePanel = new VBox(12, inventaireTitre, listePokemon);
         inventairePanel.setMinWidth(LARGEUR_MIN_INVENTAIRE);
@@ -195,6 +198,7 @@ public class PokemonViewFx {
         inventairePanel.setMaxWidth(LARGEUR_MAX_INVENTAIRE);
         inventaireTitre.setPadding(new Insets(16));
         inventairePanel.getStyleClass().add("inventaire-panel");
+        inventairePanel.setAlignment(Pos.TOP_CENTER);
 
         VBox contenuPrincipal = new VBox(recherche, card, messageErreur);
         contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);

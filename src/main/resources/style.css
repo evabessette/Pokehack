@@ -98,3 +98,8 @@
     -fx-padding: 4 10 4 10;
 
 }
+
+.inventaire-titre {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}

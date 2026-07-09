@@ -1,5 +1,6 @@
 package pokehack;
 
+import pokehack.controller.PokemonController;
 import pokehack.view.PokemonViewFx;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class MainFx extends Application {
 
         PokemonViewFx view = new PokemonViewFx();
 
-//        PokemonController ctrl = new PokemonController(view);
+        PokemonController ctrl = new PokemonController(view);
 
         Scene scene = new Scene(view.getRoot(), 400, 650);
         scene.getStylesheets().add(
