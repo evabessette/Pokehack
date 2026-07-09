@@ -249,3 +249,5 @@ public class PokemonViewFx {
         stage.setWidth(stage.getWidth() + changementLargeur);
     }
 }
+
+// TEST
