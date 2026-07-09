@@ -14,19 +14,12 @@ import javafx.scene.layout.VBox;
 
 public class PokemonViewFx {
 
-    public final Label statistiquesTitre;
-    public final Label typePokemon;
-    public final Label nomPokemon;
-    public final Label idPokemon;
-    public final Label hp;
-    public final Label attack;
-    public final Label defense;
-    public final Label speed;
-    public final Label weight;
-    public final Label height;
+    public final Label nomPokemon, idPokemon, typePokemon;
+    public final Label hp, attack, defense, speed;
+    public final Label weight, height;
+    public final Label statistiquesTitre, messageErreur;
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
-    public final Label messageErreur;
     public final Button catchButton;
 
     private final VBox racine;
