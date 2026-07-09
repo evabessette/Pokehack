@@ -33,7 +33,7 @@ public class PokemonController {
             vue.spdProgress.setProgress(60 / 255.0);
 
             vue.typePokemon2.setVisible(false);
-            vue.typePokemon2.setVisible(false);
+            vue.typePokemon2.setManaged(false); //pretend node isn't there so that it doesn't stay on the left
 
 
         });
