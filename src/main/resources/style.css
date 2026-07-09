@@ -23,3 +23,11 @@
 .spd-progress .bar {
     -fx-background-color: limegreen;
 }
+
+.type-pokemon {
+    -fx-background-color: #78c850;
+    -fx-text-fill: white;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+}
