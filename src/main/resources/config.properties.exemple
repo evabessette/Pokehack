@@ -1,0 +1,7 @@
+// Configuration des informations de connexion à la base de données PostgreSQL
+// Remplacez les valeurs ci-dessous par vos propres informations de connexion
+// Renommez ce fichier en config.properties
+
+db.url=jdbc:postgresql://localhost:5432/pokehack
+db.user=postgres
+db.password=AJOUTER_VOTRE_MOT_DE_PASSE
