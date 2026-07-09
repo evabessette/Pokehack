@@ -26,11 +26,20 @@
     -fx-type-fee:       #d685ad;
 }
 
+@font-face {
+    font-family: "Press Start 2P";
+    src: url("fonts/PressStart2P-Regular.ttf");
+}
+
 /*.root { -fx-border-color: red; }*/
 
 /*.card, .stats, .measurements, .recherche { -fx-border-color: red; }*/
 
-.nom-pokemon { -fx-font-size: 40px; }
+.nom-pokemon {
+    -fx-font-family: "Press Start 2P";
+    -fx-font-size: 24px;
+    -fx-padding: 20 0 0 0;
+}
 
 /*.measurement-box {*/
 /*    -fx-border-color: red;*/
@@ -58,6 +67,7 @@
 
 .id-pokemon {
     -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 
@@ -68,6 +78,15 @@
     -fx-background-radius: 12;
     -fx-font-weight: bold;
 }
+
+.type-pokemon2 {
+    -fx-background-color: #a33ea1;
+    -fx-text-fill: white;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+}
+
 
 .weight-value,
 .height-value {

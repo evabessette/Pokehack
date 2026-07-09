@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class PokemonViewFx {
 
-    public final Label nomPokemon, idPokemon, typePokemon;
+    public final Label nomPokemon, idPokemon, typePokemon, typePokemon2;
     public final Label hp, attack, defense, speed;
     public final Label statistiquesTitre, messageErreur;
     public final Label weightLabel, heightLabel;
@@ -31,6 +31,7 @@ public class PokemonViewFx {
     private final VBox stats;
     private final VBox weight;
     private final VBox height;
+    private final HBox types;
 
     private final HBox statsBarHP;
     public final ProgressBar hpProgress;
@@ -82,8 +83,17 @@ public class PokemonViewFx {
 
         statistiquesTitre = new Label("Statistiques");
         statistiquesTitre.getStyleClass().add("statistiques-titre");
+
         typePokemon = new Label("Plante");
         typePokemon.getStyleClass().add("type-pokemon");
+
+        typePokemon2 = new Label("Poison");
+        typePokemon2.getStyleClass().add("type-pokemon2");
+
+        types = new HBox(10, typePokemon, typePokemon2);
+        types.getStyleClass().add("types");
+        types.setAlignment(Pos.CENTER);
+
         nomPokemon = new Label("Bulbizarre");
         nomPokemon.getStyleClass().add("nom-pokemon");
         idPokemon = new Label("#01");
@@ -148,7 +158,7 @@ public class PokemonViewFx {
         stats.setAlignment(Pos.CENTER);
 
         recherche = new HBox(16, champNomPokemon, catchButton);
-        card = new VBox(10, nomPokemon, imagePokemon, idPokemon, typePokemon, measurements, statistiquesTitre, stats, inventoryToggle);
+        card = new VBox(10, nomPokemon, imagePokemon, idPokemon, types, measurements, statistiquesTitre, stats, inventoryToggle);
         card.setAlignment(Pos.CENTER);
 
         card.getStyleClass().add("card");

@@ -9,6 +9,11 @@ public class MainFx extends Application {
 
     @Override
     public void start(Stage stage){
+
+        javafx.scene.text.Font.loadFont(
+                getClass().getResourceAsStream("/fonts/PressStart2P-Regular.ttf"),
+                24);
+
         PokemonViewFx view = new PokemonViewFx();
 
 //        PokemonController ctrl = new PokemonController(view);
