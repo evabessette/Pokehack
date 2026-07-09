@@ -113,11 +113,14 @@ public class PokemonViewFx {
         weightLabel = new Label("Weight");
         heightLabel = new Label("Height");
 
+
         weightValue = new Label("6.5 kg");
         heightValue = new Label("50 cm");
 
         weight = new VBox(weightValue, weightLabel);
+        weight.setAlignment(Pos.CENTER);
         height = new VBox(heightValue, heightLabel);
+        height.setAlignment(Pos.CENTER);
         weightValue.getStyleClass().add("weight-value");
         heightValue.getStyleClass().add("height-value");
         weightLabel.getStyleClass().add("weight-label");

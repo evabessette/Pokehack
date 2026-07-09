@@ -1,3 +1,31 @@
+.root {
+    /* Couleurs de base */
+    -fx-couleur-primaire: #2c3e50;
+    -fx-couleur-accent: #e74c3c;
+    -fx-couleur-fond: #ecf0f1;
+    -fx-couleur-texte: derive(-fx-couleur-primaire, -20%);
+
+    /* Couleurs des 18 types */
+    -fx-type-normal:    #a8a77a;
+    -fx-type-feu:       #ee8130;
+    -fx-type-eau:       #6390f0;
+    -fx-type-electrik:  #f7d02c;
+    -fx-type-plante:    #7ac74c;
+    -fx-type-glace:     #96d9d6;
+    -fx-type-combat:    #c22e28;
+    -fx-type-poison:    #a33ea1;
+    -fx-type-sol:       #e2bf65;
+    -fx-type-vol:       #a98ff3;
+    -fx-type-psy:       #f95587;
+    -fx-type-insecte:   #a6b91a;
+    -fx-type-roche:     #b6a136;
+    -fx-type-spectre:   #735797;
+    -fx-type-dragon:    #6f35fc;
+    -fx-type-tenebres:  #705746;
+    -fx-type-acier:     #b7b7ce;
+    -fx-type-fee:       #d685ad;
+}
+
 /*.root { -fx-border-color: red; }*/
 
 /*.card, .stats, .measurements, .recherche { -fx-border-color: red; }*/
@@ -34,7 +62,7 @@
 
 
 .type-pokemon {
-    -fx-background-color: #78c850;
+    -fx-background-color: #7ac74c;
     -fx-text-fill: white;
     -fx-padding: 4 10 4 10;
     -fx-background-radius: 12;
