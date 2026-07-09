@@ -79,18 +79,22 @@ public class PokemonViewFx {
 
         hp = new Label("HP");
         hpProgress = new ProgressBar(0.50);
+        hpProgress.getStyleClass().add("hp-progress");
         hpNumber = new Label("50");
 
         attack = new Label("ATK");
         atkProgress = new ProgressBar(0.40);
+        atkProgress.getStyleClass().add("atk-progress");
         atkNumber = new Label("40");
 
         defense = new Label("DEF");
         defProgress = new ProgressBar(0.30);
+        defProgress.getStyleClass().add("def-progress");
         defNumber = new Label("30");
 
         speed = new Label("SPD");
         spdProgress = new ProgressBar(0.60);
+        spdProgress.getStyleClass().add("spd-progress");
         spdNumber = new Label("60");
 
 

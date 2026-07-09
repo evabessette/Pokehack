@@ -1,7 +1,25 @@
+/*.root { -fx-border-color: red; }*/
+
 .card, .stats, .measurements, .recherche { -fx-border-color: red; }
 
 .nom-pokemon { -fx-font-size: xx-large; }
 
 .measurement-box {
     -fx-border-color: red;
+}
+
+.hp-progress .bar {
+    -fx-background-color: red;
+}
+
+.atk-progress .bar {
+    -fx-background-color: orange;
+}
+
+.def-progress .bar {
+    -fx-background-color: royalblue;
+}
+
+.spd-progress .bar {
+    -fx-background-color: limegreen;
 }
