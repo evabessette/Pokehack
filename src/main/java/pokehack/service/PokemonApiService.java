@@ -75,6 +75,14 @@ public class PokemonApiService {
         lireTypes(root, pokemon);
         lireStats(root, pokemon);
 
+        if (pokemon.primary_type != null && !pokemon.primary_type.isBlank()) {
+            pokemon.primary_type_icon = chercherIconeType(pokemon.primary_type);
+        }
+
+        if (pokemon.secondary_type != null && !pokemon.secondary_type.isBlank()) {
+            pokemon.secondary_type_icon = chercherIconeType(pokemon.secondary_type);
+        }
+
         pokemon.weight = root.path("weight").asDouble();
         pokemon.height = root.path("height").asDouble();
 
@@ -89,6 +97,7 @@ public class PokemonApiService {
 
         for (JsonNode typeNode : types) {
             int slot = typeNode.path("slot").asInt();
+
             String typeName = typeNode
                     .path("type")
                     .path("name")
@@ -100,6 +109,51 @@ public class PokemonApiService {
                 pokemon.secondary_type = typeName;
             }
         }
+    }
+
+    private String chercherIconeType(String typeName) throws Exception {
+        String url = "https://pokeapi.co/api/v2/type/" + typeName;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .timeout(Duration.ofSeconds(10))
+                .GET()
+                .build();
+
+        HttpResponse<String> response;
+
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            return null;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
+        }
+
+        if (response.statusCode() != 200) {
+            return null;
+        }
+
+        JsonNode root = mapper.readTree(response.body());
+
+        JsonNode iconNode = root
+                .path("sprites")
+                .path("generation-viii")
+                .path("brilliant-diamond-shining-pearl")
+                .path("symbol_icon");
+
+        if (iconNode.isMissingNode() || iconNode.isNull()) {
+            return null;
+        }
+
+        String iconUrl = iconNode.asText();
+
+        if (iconUrl == null || iconUrl.isBlank()) {
+            return null;
+        }
+
+        return iconUrl;
     }
 
     private void lireStats(JsonNode root, Pokemon pokemon) {
