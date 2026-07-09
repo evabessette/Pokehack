@@ -58,8 +58,11 @@ public class PokemonViewFx {
 
         statistiquesTitre = new Label("Statistiques");
         typePokemon = new Label("Plante");
+        typePokemon.getStyleClass().add("type-pokemon");
         nomPokemon = new Label("Bulbizarre");
+        nomPokemon.getStyleClass().add("nom-pokemon");
         idPokemon = new Label("#01");
+        idPokemon.getStyleClass().add("id-pokemon");
         hp = new Label("HP");
         attack = new Label("ATK");
         defense = new Label("DEF");

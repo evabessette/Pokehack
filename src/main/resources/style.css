@@ -1,1 +1,3 @@
 .card, .stats, .measurements, .recherche { -fx-border-color: red; }
+
+.nom-pokemon { -fx-font-size: xx-large; }
