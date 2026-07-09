@@ -78,6 +78,12 @@ public class PokemonViewFx {
         racine = new VBox(card, recherche, messageErreur);
         racine.setPadding(new Insets(24));
 
+        card.getStyleClass().add("card");
+        stats.getStyleClass().add("stats");
+        measurements.getStyleClass().add("measurements");
+        recherche.getStyleClass().add("recherche");
+        racine.getStyleClass().add("racine");
+
 
 
 
