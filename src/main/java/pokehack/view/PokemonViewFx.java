@@ -53,8 +53,10 @@ public class PokemonViewFx {
 
     private final HBox layoutPrincipal;
     private final VBox inventairePanel;
-    private static final double LARGEUR_CONTENU_PRINCIPAL = 400;
-    private static final double LARGEUR_INVENTAIRE = 200;
+    private static final double LARGEUR_MIN_CONTENU_PRINCIPAL = 280;
+    private static final double LARGEUR_MIN_INVENTAIRE = 160;
+    private static final double LARGEUR_PREF_INVENTAIRE = 220;
+    private static final double LARGEUR_MAX_INVENTAIRE = 260;
 
 
     public PokemonViewFx() {
@@ -102,21 +104,25 @@ public class PokemonViewFx {
         hp = new Label("HP");
         hpProgress = new ProgressBar(0.50);
         hpProgress.getStyleClass().add("hp-progress");
+        hpProgress.setMaxWidth(Double.MAX_VALUE);
         hpNumber = new Label("50");
 
         attack = new Label("ATK");
         atkProgress = new ProgressBar(0.40);
         atkProgress.getStyleClass().add("atk-progress");
+        atkProgress.setMaxWidth(Double.MAX_VALUE);
         atkNumber = new Label("40");
 
         defense = new Label("DEF");
         defProgress = new ProgressBar(0.30);
         defProgress.getStyleClass().add("def-progress");
+        defProgress.setMaxWidth(Double.MAX_VALUE);
         defNumber = new Label("30");
 
         speed = new Label("SPD");
         spdProgress = new ProgressBar(0.60);
         spdProgress.getStyleClass().add("spd-progress");
+        spdProgress.setMaxWidth(Double.MAX_VALUE);
         spdNumber = new Label("60");
 
 
@@ -147,19 +153,30 @@ public class PokemonViewFx {
 //        stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
         statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
         statsBarHP.setAlignment(Pos.CENTER);
+        statsBarHP.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(hpProgress, Priority.ALWAYS);
         statsBarATK = new HBox(10, attack, atkProgress, atkNumber);
         statsBarATK.setAlignment(Pos.CENTER);
+        statsBarATK.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(atkProgress, Priority.ALWAYS);
         statsBarDEF = new HBox(10, defense, defProgress, defNumber);
         statsBarDEF.setAlignment(Pos.CENTER);
+        statsBarDEF.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(defProgress, Priority.ALWAYS);
         statsBarSPD = new HBox(10, speed, spdProgress, spdNumber);
         statsBarSPD.setAlignment(Pos.CENTER);
+        statsBarSPD.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(spdProgress, Priority.ALWAYS);
 
         stats = new VBox(10, statsBarHP, statsBarATK, statsBarDEF, statsBarSPD);
         stats.setAlignment(Pos.CENTER);
+        stats.setMaxWidth(Double.MAX_VALUE);
 
         recherche = new HBox(16, champNomPokemon, catchButton);
+        recherche.setMaxWidth(Double.MAX_VALUE);
         card = new VBox(10, nomPokemon, imagePokemon, idPokemon, types, measurements, statistiquesTitre, stats, inventoryToggle);
         card.setAlignment(Pos.CENTER);
+        card.setMaxWidth(Double.MAX_VALUE);
 
         card.getStyleClass().add("card");
         statsBarHP.getStyleClass().add("stats-bar-hp");
@@ -173,26 +190,37 @@ public class PokemonViewFx {
         VBox listePokemon = new VBox(8, new Label("Bulbizarre"), new Label("Salamèche"), new Label("Carapuce"));
 
         inventairePanel = new VBox(12, inventaireTitre, listePokemon);
-        inventairePanel.setPrefWidth(LARGEUR_INVENTAIRE);
-        inventairePanel.setMinWidth(LARGEUR_INVENTAIRE);
+        inventairePanel.setMinWidth(LARGEUR_MIN_INVENTAIRE);
+        inventairePanel.setPrefWidth(LARGEUR_PREF_INVENTAIRE);
+        inventairePanel.setMaxWidth(LARGEUR_MAX_INVENTAIRE);
         inventaireTitre.setPadding(new Insets(16));
         inventairePanel.getStyleClass().add("inventaire-panel");
 
         VBox contenuPrincipal = new VBox(recherche, card, messageErreur);
-        contenuPrincipal.setPrefWidth(LARGEUR_CONTENU_PRINCIPAL);
-        contenuPrincipal.setMinWidth(LARGEUR_CONTENU_PRINCIPAL);
+        contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);
+        contenuPrincipal.setMaxWidth(Double.MAX_VALUE);
         contenuPrincipal.setPadding(new Insets(24));
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
-        HBox.setHgrow(contenuPrincipal, Priority.NEVER);
+        layoutPrincipal.setMaxWidth(Double.MAX_VALUE);
+        layoutPrincipal.setMaxHeight(Double.MAX_VALUE);
+        HBox.setHgrow(contenuPrincipal, Priority.ALWAYS);
         HBox.setHgrow(inventairePanel, Priority.NEVER);
 
         inventairePanel.setVisible(false);
         inventairePanel.setManaged(false);
 
         inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
-            inventairePanel.setVisible(isSelected);
-            inventairePanel.setManaged(isSelected);
-            Platform.runLater(() -> resizeWindowForInventory(isSelected));
+            if (isSelected) {
+                resizeWindowForInventory(true);
+                Platform.runLater(() -> {
+                    inventairePanel.setVisible(true);
+                    inventairePanel.setManaged(true);
+                });
+            } else {
+                inventairePanel.setVisible(false);
+                inventairePanel.setManaged(false);
+                resizeWindowForInventory(false);
+            }
         });
 
         racine = layoutPrincipal;
@@ -204,15 +232,16 @@ public class PokemonViewFx {
     }
 
     private void resizeWindowForInventory(boolean inventoryVisible) {
-            Stage stage = (Stage) racine.getScene().getWindow();
 
-            double changementLargeur;
+        Stage stage = (Stage) racine.getScene().getWindow();
+        double changementLargeur;
 
-            if (inventoryVisible) {
-                changementLargeur = LARGEUR_INVENTAIRE;
-            } else {
-                changementLargeur = -LARGEUR_INVENTAIRE;
-            }
-            stage.setWidth(stage.getWidth() + changementLargeur);
+        if (inventoryVisible) {
+            changementLargeur = LARGEUR_PREF_INVENTAIRE;
+        } else {
+            changementLargeur = -LARGEUR_PREF_INVENTAIRE;
         }
+
+        stage.setWidth(stage.getWidth() + changementLargeur);
+    }
 }
