@@ -17,7 +17,6 @@ public class PokemonViewFx {
 
     public final Label nomPokemon, idPokemon, typePokemon;
     public final Label hp, attack, defense, speed;
-//    public final Label weight, height;
     public final Label statistiquesTitre, messageErreur;
     public final Label weightLabel, heightLabel;
     public final Label weightValue, heightValue;
@@ -103,6 +102,9 @@ public class PokemonViewFx {
 
         weight = new VBox(weightLabel, weightValue);
         height = new VBox(heightLabel, heightValue);
+
+        weight.getStyleClass().add("measurement-box");
+        height.getStyleClass().add("measurement-box");
 
         // Containers
 
