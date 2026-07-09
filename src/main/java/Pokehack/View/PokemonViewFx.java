@@ -51,7 +51,7 @@ public class PokemonViewFx {
         champNomPokemon.getStyleClass().add("champ-nom-pokemon");
 
         catchButton = new Button("Attraper");
-        catchButton.getStyleClass().add("card");
+        catchButton.getStyleClass().add("bouton-catch");
 
         messageErreur = new Label();
         messageErreur.getStyleClass().add("message-erreur");
