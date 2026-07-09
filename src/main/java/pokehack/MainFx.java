@@ -13,7 +13,7 @@ public class MainFx extends Application {
 
 //        PokemonController ctrl = new PokemonController(view);
 
-        Scene scene = new Scene(view.getRoot(), 400, 500);
+        Scene scene = new Scene(view.getRoot(), 400, 600);
         scene.getStylesheets().add(
                 getClass().getResource("/style.css").toExternalForm()
         );

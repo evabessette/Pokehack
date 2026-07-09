@@ -53,7 +53,7 @@ public class PokemonViewFx {
     public PokemonViewFx() {
 
         imagePokemon = new ImageView(new Image(
-                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
                 true));
         imagePokemon.setFitWidth(200);
         imagePokemon.setPreserveRatio(true);
