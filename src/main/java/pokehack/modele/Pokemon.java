@@ -12,6 +12,8 @@ public class Pokemon {
     public int special_attack ;
     public int special_defense ;
     public int speed ;
+    public double weight;
+    public double height;
     public String captured_at ;
 
     public Pokemon() {
@@ -35,6 +37,8 @@ public class Pokemon {
                 ", special_attack=" + special_attack +
                 ", special_defense=" + special_defense +
                 ", speed=" + speed +
+                ", weight=" + weight +
+                ", height=" + height +
                 ", captured_at='" + captured_at + '\'' +
                 '}';
     }
