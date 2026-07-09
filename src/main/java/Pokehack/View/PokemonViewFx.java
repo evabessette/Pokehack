@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -37,9 +38,12 @@ public class PokemonViewFx {
 
     public PokemonViewFx() {
 
-        imagePokemon = new ImageView();
+        imagePokemon = new ImageView(new Image(
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                true));
         imagePokemon.setFitWidth(200);
         imagePokemon.setPreserveRatio(true);
+        imagePokemon.setSmooth(false);
 
         champNomPokemon = new TextField();
         champNomPokemon.setPromptText("nom d'un Pokémon");
@@ -53,15 +57,15 @@ public class PokemonViewFx {
         messageErreur.getStyleClass().add("message-erreur");
 
         statistiquesTitre = new Label("Statistiques");
-        typePokemon = new Label();
-        nomPokemon = new Label();
-        idPokemon = new Label();
-        hp = new Label();
-        attack = new Label();
-        defense = new Label();
-        speed = new Label();
-        weight = new Label();
-        height = new Label();
+        typePokemon = new Label("Plante");
+        nomPokemon = new Label("Bulbizarre");
+        idPokemon = new Label("#01");
+        hp = new Label("HP");
+        attack = new Label("ATK");
+        defense = new Label("DEF");
+        speed = new Label("SPD");
+        weight = new Label("Poids");
+        height = new Label("Taille");
 
         // Containers
 
