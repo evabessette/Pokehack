@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import pokehack.modele.Pokemon;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class PokemonViewFx {
@@ -27,7 +28,9 @@ public class PokemonViewFx {
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
     public final ImageView primaryTypeIcon;
+    public final ImageView primaryTypeName;
     public final ImageView secondaryTypeIcon;
+    public final ImageView secondaryTypeName;
     public final Button catchButton;
     public final ToggleButton inventoryToggle;
 
@@ -68,19 +71,31 @@ public class PokemonViewFx {
     public PokemonViewFx() {
 
         imagePokemon = new ImageView(new Image(
-                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                true
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            true
         ));
         imagePokemon.setFitWidth(200);
         imagePokemon.setPreserveRatio(true);
         imagePokemon.setSmooth(false);
 
         champNomPokemon = new TextField();
-        champNomPokemon.setPromptText("nom d'un Pokémon");
+        champNomPokemon.setPromptText("Entrez le nom ou l'ID du Pokémon");
         HBox.setHgrow(champNomPokemon, Priority.ALWAYS);
         champNomPokemon.getStyleClass().add("champ-nom-pokemon");
 
+        // Button attraper
         catchButton = new Button("Attraper");
+        ImageView pokeballIcon = new ImageView(
+            Objects.requireNonNull(
+                    getClass().getResource("/images/pokeball.png"),
+                    "Image introuvable : /images/pokeball.png"
+            ).toExternalForm()
+        );
+        pokeballIcon.setFitWidth(24);
+        pokeballIcon.setFitHeight(24);
+        pokeballIcon.setPreserveRatio(true);
+        catchButton.setGraphic(pokeballIcon);
+        catchButton.setGraphicTextGap(8);
         catchButton.getStyleClass().add("bouton-catch");
 
         inventoryToggle = new ToggleButton("Montrer l'inventaire");
@@ -104,13 +119,25 @@ public class PokemonViewFx {
         primaryTypeIcon.setPreserveRatio(true);
         primaryTypeIcon.setSmooth(true);
 
+        primaryTypeName = new ImageView();
+        primaryTypeName.setFitHeight(24);
+        primaryTypeName.setFitWidth(24);
+        primaryTypeName.setPreserveRatio(true);
+        primaryTypeName.setSmooth(true);
+
         secondaryTypeIcon = new ImageView();
         secondaryTypeIcon.setFitHeight(24);
         secondaryTypeIcon.setFitWidth(24);
         secondaryTypeIcon.setPreserveRatio(true);
         secondaryTypeIcon.setSmooth(true);
 
-        types = new HBox(10, primaryTypeIcon, typePokemon, secondaryTypeIcon, typePokemon2);
+        secondaryTypeName = new ImageView();
+        secondaryTypeName.setFitHeight(24);
+        secondaryTypeName.setFitWidth(24);
+        secondaryTypeName.setPreserveRatio(true);
+        secondaryTypeName.setSmooth(true);
+
+        types = new HBox(10, primaryTypeIcon, primaryTypeName, secondaryTypeIcon, secondaryTypeName);
         types.getStyleClass().add("types");
         types.setAlignment(Pos.CENTER);
 
