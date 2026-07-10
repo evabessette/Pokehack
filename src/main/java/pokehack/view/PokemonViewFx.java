@@ -156,7 +156,7 @@ public class PokemonViewFx {
         idPokemon = new Label("#1");
         idPokemon.getStyleClass().add("id-pokemon");
 
-        hp = new Label("HP ");
+        hp = new Label("HP");
         hpProgress = new ProgressBar(0.50);
         hpProgress.getStyleClass().add("hp-progress");
         hpProgress.setMaxWidth(Double.MAX_VALUE);
@@ -199,6 +199,31 @@ public class PokemonViewFx {
         measurements.setAlignment(Pos.CENTER);
 
         // ----- Statistiques du pokemon -----
+
+        // ------ 1) aligner les barres de progrès ----
+
+        hp.setPrefWidth(40);
+        attack.setPrefWidth(40);
+        defense.setPrefWidth(40);
+        speed.setPrefWidth(40);
+
+        hpNumber.setPrefWidth(35);
+        atkNumber.setPrefWidth(35);
+        defNumber.setPrefWidth(35);
+        spdNumber.setPrefWidth(35);
+
+        hp.setAlignment(Pos.CENTER_RIGHT);
+        attack.setAlignment(Pos.CENTER_RIGHT);
+        defense.setAlignment(Pos.CENTER_RIGHT);
+        speed.setAlignment(Pos.CENTER_RIGHT);
+
+        hpNumber.setAlignment(Pos.CENTER_LEFT);
+        atkNumber.setAlignment(Pos.CENTER_LEFT);
+        defNumber.setAlignment(Pos.CENTER_LEFT);
+        spdNumber.setAlignment(Pos.CENTER_LEFT);
+
+        // ------2) Création des HBox pour chaque stat -----
+
         statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
         statsBarHP.setAlignment(Pos.CENTER);
         statsBarHP.setMaxWidth(Double.MAX_VALUE);
@@ -222,6 +247,8 @@ public class PokemonViewFx {
         stats = new VBox(10, statsBarHP, statsBarATK, statsBarDEF, statsBarSPD);
         stats.setAlignment(Pos.CENTER);
         stats.setMaxWidth(Double.MAX_VALUE);
+
+
 
         // ------ Input rechercher -----
         recherche = new HBox(16, champNomPokemon, catchButton);
