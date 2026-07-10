@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS pokemons (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     image_url TEXT,
     primary_type VARCHAR(50) NOT NULL,

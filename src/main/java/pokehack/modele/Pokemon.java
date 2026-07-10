@@ -1,20 +1,27 @@
 package pokehack.modele;
 
 public class Pokemon {
-    public String id ;
+    public String id;
     public String name;
-    public String image_url ;
-    public String primary_type ;
-    public String secondary_type ;
-    public int hp ;
-    public int attack ;
-    public int defense ;
-    public int special_attack ;
-    public int special_defense ;
-    public int speed ;
+    public String image_url;
+
+    public String primary_type;
+    public String secondary_type;
+
+    public String primary_type_icon;
+    public String secondary_type_icon;
+
+    public int hp;
+    public int attack;
+    public int defense;
+    public int special_attack;
+    public int special_defense;
+    public int speed;
+
     public double weight;
     public double height;
-    public String captured_at ;
+
+    public String captured_at;
 
     public Pokemon() {
     }
@@ -31,6 +38,8 @@ public class Pokemon {
                 ", image_url='" + image_url + '\'' +
                 ", primary_type='" + primary_type + '\'' +
                 ", secondary_type='" + secondary_type + '\'' +
+                ", primary_type_icon='" + primary_type_icon + '\'' +
+                ", secondary_type_icon='" + secondary_type_icon + '\'' +
                 ", hp=" + hp +
                 ", attack=" + attack +
                 ", defense=" + defense +
@@ -42,5 +51,4 @@ public class Pokemon {
                 ", captured_at='" + captured_at + '\'' +
                 '}';
     }
-
 }

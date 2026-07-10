@@ -3,7 +3,7 @@
 ## INITIALISATION
 
 1. Clonez le dépôt.
-2. Créez une base de données PostgreSQL nommée "pokehack".
+2. Créez une base de données PostgreSQL nommée "PokeHack".
 3. Modifiez le fichier `src/main/resources/config.properties` avec vos informations de connexion.
 
 
@@ -32,8 +32,11 @@ pokehack/
 │   │   │       └── view/
 │   │   │           └── PokemonView.java
 │   │   └── resources/
-│   │       └── styles/
-│   │           └── pokemon.css
+│   │       ├── fonts/
+│   │       ├── styles.css
+│   │       ├── schema.sql
+│   │       └── config.properties
+│   │           
 ```
 
 ## DATABASE

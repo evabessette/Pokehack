@@ -5,6 +5,7 @@ import pokehack.view.PokemonViewFx;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 public class MainFx extends Application {
 
@@ -24,6 +25,9 @@ public class MainFx extends Application {
                 getClass().getResource("/style.css").toExternalForm()
         );
         stage.setTitle("Pokédex - Recherche de Pokémon");
+        stage.getIcons().add(
+                new Image(getClass().getResourceAsStream("/images/pokeball.png"))
+        );
         stage.setScene(scene);
         stage.show();
 

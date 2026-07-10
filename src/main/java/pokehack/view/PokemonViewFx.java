@@ -9,8 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import pokehack.modele.Pokemon;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 public class PokemonViewFx {
 
@@ -21,6 +26,8 @@ public class PokemonViewFx {
     public final Label weightValue, heightValue;
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
+    public final ImageView primaryTypeIcon;
+    public final ImageView secondaryTypeIcon;
     public final Button catchButton;
     public final ToggleButton inventoryToggle;
 
@@ -49,21 +56,21 @@ public class PokemonViewFx {
     public final ProgressBar spdProgress;
     public final Label spdNumber;
 
-    // Making horizontal layout
-
     private final HBox layoutPrincipal;
     private final VBox inventairePanel;
+    private final VBox listePokemon;
+
     private static final double LARGEUR_MIN_CONTENU_PRINCIPAL = 280;
     private static final double LARGEUR_MIN_INVENTAIRE = 160;
     private static final double LARGEUR_PREF_INVENTAIRE = 220;
     private static final double LARGEUR_MAX_INVENTAIRE = 260;
 
-
     public PokemonViewFx() {
 
         imagePokemon = new ImageView(new Image(
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                true));
+                true
+        ));
         imagePokemon.setFitWidth(200);
         imagePokemon.setPreserveRatio(true);
         imagePokemon.setSmooth(false);
@@ -79,7 +86,6 @@ public class PokemonViewFx {
         inventoryToggle = new ToggleButton("Montrer l'inventaire");
         inventoryToggle.getStyleClass().add("toggle-inventaire");
 
-
         messageErreur = new Label();
         messageErreur.getStyleClass().add("message-erreur");
 
@@ -92,13 +98,26 @@ public class PokemonViewFx {
         typePokemon2 = new Label("Poison");
         typePokemon2.getStyleClass().add("type-pokemon2");
 
-        types = new HBox(10, typePokemon, typePokemon2);
+        primaryTypeIcon = new ImageView();
+        primaryTypeIcon.setFitHeight(24);
+        primaryTypeIcon.setFitWidth(24);
+        primaryTypeIcon.setPreserveRatio(true);
+        primaryTypeIcon.setSmooth(true);
+
+        secondaryTypeIcon = new ImageView();
+        secondaryTypeIcon.setFitHeight(24);
+        secondaryTypeIcon.setFitWidth(24);
+        secondaryTypeIcon.setPreserveRatio(true);
+        secondaryTypeIcon.setSmooth(true);
+
+        types = new HBox(10, primaryTypeIcon, typePokemon, secondaryTypeIcon, typePokemon2);
         types.getStyleClass().add("types");
         types.setAlignment(Pos.CENTER);
 
         nomPokemon = new Label("Bulbizarre");
         nomPokemon.getStyleClass().add("nom-pokemon");
-        idPokemon = new Label("#01");
+
+        idPokemon = new Label("#1");
         idPokemon.getStyleClass().add("id-pokemon");
 
         hp = new Label("HP");
@@ -125,44 +144,44 @@ public class PokemonViewFx {
         spdProgress.setMaxWidth(Double.MAX_VALUE);
         spdNumber = new Label("60");
 
-
         weightLabel = new Label("Weight");
         heightLabel = new Label("Height");
-
 
         weightValue = new Label("6.5 kg");
         heightValue = new Label("50 cm");
 
         weight = new VBox(weightValue, weightLabel);
         weight.setAlignment(Pos.CENTER);
+
         height = new VBox(heightValue, heightLabel);
         height.setAlignment(Pos.CENTER);
+
         weightValue.getStyleClass().add("weight-value");
         heightValue.getStyleClass().add("height-value");
         weightLabel.getStyleClass().add("weight-label");
         heightLabel.getStyleClass().add("height-label");
 
-
         weight.getStyleClass().add("measurement-box");
         height.getStyleClass().add("measurement-box");
 
-        // Containers
-
         measurements = new HBox(16, weight, height);
         measurements.setAlignment(Pos.CENTER);
-//        stats = new VBox(10, statistiquesTitre, hp, attack, defense, speed);
+
         statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
         statsBarHP.setAlignment(Pos.CENTER);
         statsBarHP.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(hpProgress, Priority.ALWAYS);
+
         statsBarATK = new HBox(10, attack, atkProgress, atkNumber);
         statsBarATK.setAlignment(Pos.CENTER);
         statsBarATK.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(atkProgress, Priority.ALWAYS);
+
         statsBarDEF = new HBox(10, defense, defProgress, defNumber);
         statsBarDEF.setAlignment(Pos.CENTER);
         statsBarDEF.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(defProgress, Priority.ALWAYS);
+
         statsBarSPD = new HBox(10, speed, spdProgress, spdNumber);
         statsBarSPD.setAlignment(Pos.CENTER);
         statsBarSPD.setMaxWidth(Double.MAX_VALUE);
@@ -174,7 +193,18 @@ public class PokemonViewFx {
 
         recherche = new HBox(16, champNomPokemon, catchButton);
         recherche.setMaxWidth(Double.MAX_VALUE);
-        card = new VBox(10, nomPokemon, imagePokemon, idPokemon, types, measurements, statistiquesTitre, stats, inventoryToggle);
+
+        card = new VBox(
+                10,
+                nomPokemon,
+                imagePokemon,
+                idPokemon,
+                types,
+                measurements,
+                statistiquesTitre,
+                stats,
+                inventoryToggle
+        );
         card.setAlignment(Pos.CENTER);
         card.setMaxWidth(Double.MAX_VALUE);
 
@@ -183,14 +213,11 @@ public class PokemonViewFx {
         measurements.getStyleClass().add("measurements");
         recherche.getStyleClass().add("recherche");
 
-        // Horizontal layout
-
-        Label inventaireTitre = new Label ("Pokémon attrapés");
+        Label inventaireTitre = new Label("Pokémon attrapés");
         inventaireTitre.getStyleClass().add("inventaire-titre");
 
-
-        VBox listePokemon = new VBox(8, new Label("Bulbizarre"), new Label("Salamèche"), new Label("Carapuce"));
-        listePokemon.setAlignment(Pos.CENTER);
+        listePokemon = new VBox(8);
+        listePokemon.setAlignment(Pos.TOP_LEFT);
 
         inventairePanel = new VBox(12, inventaireTitre, listePokemon);
         inventairePanel.setMinWidth(LARGEUR_MIN_INVENTAIRE);
@@ -204,9 +231,11 @@ public class PokemonViewFx {
         contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);
         contenuPrincipal.setMaxWidth(Double.MAX_VALUE);
         contenuPrincipal.setPadding(new Insets(24));
+
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
         layoutPrincipal.setMaxWidth(Double.MAX_VALUE);
         layoutPrincipal.setMaxHeight(Double.MAX_VALUE);
+
         HBox.setHgrow(contenuPrincipal, Priority.ALWAYS);
         HBox.setHgrow(inventairePanel, Priority.NEVER);
 
@@ -216,6 +245,7 @@ public class PokemonViewFx {
         inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             if (isSelected) {
                 resizeWindowForInventory(true);
+
                 Platform.runLater(() -> {
                     inventairePanel.setVisible(true);
                     inventairePanel.setManaged(true);
@@ -231,13 +261,52 @@ public class PokemonViewFx {
         racine.getStyleClass().add("racine");
     }
 
-    public Parent getRoot(){
+    public void setInventaireItems(
+            List<Pokemon> pokemons,
+            Consumer<Pokemon> onVoir,
+            Consumer<Pokemon> onSupprimer
+    ) {
+        listePokemon.getChildren().clear();
+
+        if (pokemons == null || pokemons.isEmpty()) {
+            listePokemon.getChildren().add(new Label("Aucun Pokémon capturé"));
+            return;
+        }
+
+        for (Pokemon pokemon : pokemons) {
+            Label nom = new Label(capitaliser(pokemon.name) + " #" + pokemon.id);
+
+            Button voir = new Button("Voir");
+            Button supprimer = new Button("Suppr.");
+
+            Region espace = new Region();
+            HBox.setHgrow(espace, Priority.ALWAYS);
+
+            HBox ligne = new HBox(8, nom, espace, voir, supprimer);
+            ligne.setAlignment(Pos.CENTER_LEFT);
+
+            voir.setOnAction(e -> onVoir.accept(pokemon));
+            supprimer.setOnAction(e -> onSupprimer.accept(pokemon));
+
+            listePokemon.getChildren().add(ligne);
+        }
+    }
+
+    public Parent getRoot() {
         return racine;
     }
 
-    private void resizeWindowForInventory(boolean inventoryVisible) {
+    private String capitaliser(String texte) {
+        if (texte == null || texte.isBlank()) {
+            return "";
+        }
 
+        return texte.substring(0, 1).toUpperCase() + texte.substring(1);
+    }
+
+    private void resizeWindowForInventory(boolean inventoryVisible) {
         Stage stage = (Stage) racine.getScene().getWindow();
+
         double changementLargeur;
 
         if (inventoryVisible) {
@@ -249,5 +318,3 @@ public class PokemonViewFx {
         stage.setWidth(stage.getWidth() + changementLargeur);
     }
 }
-
-// TEST
