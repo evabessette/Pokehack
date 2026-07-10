@@ -100,6 +100,16 @@ public class PokemonController {
             vue.primaryTypeIcon.setManaged(false);
         }
 
+        if (pokemon.primary_type_name != null && !pokemon.primary_type_name.isBlank()) {
+            vue.primaryTypeName.setImage(new Image(pokemon.primary_type_name, true));
+            vue.primaryTypeName.setVisible(true);
+            vue.primaryTypeName.setManaged(true);
+        } else {
+            vue.primaryTypeName.setImage(null);
+            vue.primaryTypeName.setVisible(false);
+            vue.primaryTypeName.setManaged(false);
+        }
+
         if (pokemon.secondary_type_icon != null && !pokemon.secondary_type_icon.isBlank()) {
             vue.secondaryTypeIcon.setImage(new Image(pokemon.secondary_type_icon, true));
             vue.secondaryTypeIcon.setVisible(true);
@@ -108,6 +118,15 @@ public class PokemonController {
             vue.secondaryTypeIcon.setImage(null);
             vue.secondaryTypeIcon.setVisible(false);
             vue.secondaryTypeIcon.setManaged(false);
+        }
+        if (pokemon.secondary_type_name != null && !pokemon.secondary_type_name.isBlank()) {
+            vue.secondaryTypeName.setImage(new Image(pokemon.secondary_type_name, true));
+            vue.secondaryTypeName.setVisible(true);
+            vue.secondaryTypeName.setManaged(true);
+        } else {
+            vue.secondaryTypeName.setImage(null);
+            vue.secondaryTypeName.setVisible(false);
+            vue.secondaryTypeName.setManaged(false);
         }
 
         vue.weightValue.setText(String.format("%.1f kg", pokemon.weight / 10.0));
