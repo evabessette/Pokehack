@@ -22,6 +22,7 @@ public class PokemonDAO {
                     secondary_type_icon,
                     primary_type_name,
                     secondary_type_name,
+                    cries,
                     hp,
                     attack,
                     defense,
@@ -31,7 +32,7 @@ public class PokemonDAO {
                     weight,
                     height
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (id) DO UPDATE SET
                     name = EXCLUDED.name,
                     image_url = EXCLUDED.image_url,
@@ -41,6 +42,7 @@ public class PokemonDAO {
                     secondary_type_icon = EXCLUDED.secondary_type_icon,
                     primary_type_name = EXCLUDED.primary_type_name,
                     secondary_type_name = EXCLUDED.secondary_type_name,
+                    cries = EXCLUDED.cries,
                     hp = EXCLUDED.hp,
                     attack = EXCLUDED.attack,
                     defense = EXCLUDED.defense,
@@ -64,14 +66,15 @@ public class PokemonDAO {
             ps.setString(7, p.secondary_type_icon);
             ps.setString(8, p.primary_type_name);
             ps.setString(9, p.secondary_type_name);
-            ps.setInt(10, p.hp);
-            ps.setInt(11, p.attack);
-            ps.setInt(12, p.defense);
-            ps.setInt(13, p.special_attack);
-            ps.setInt(14, p.special_defense);
-            ps.setInt(15, p.speed);
-            ps.setDouble(16, p.weight);
-            ps.setDouble(17, p.height);
+            ps.setString(10, p.cries);
+            ps.setInt(11, p.hp);
+            ps.setInt(12, p.attack);
+            ps.setInt(13, p.defense);
+            ps.setInt(14, p.special_attack);
+            ps.setInt(15, p.special_defense);
+            ps.setInt(16, p.speed);
+            ps.setDouble(17, p.weight);
+            ps.setDouble(18, p.height);
 
             ps.executeUpdate();
         }
@@ -89,6 +92,9 @@ public class PokemonDAO {
                     secondary_type,
                     primary_type_icon,
                     secondary_type_icon,
+                    primary_type_name,
+                    secondary_type_name,
+                    cries,
                     hp,
                     attack,
                     defense,
@@ -117,6 +123,9 @@ public class PokemonDAO {
                 pokemon.secondary_type = rs.getString("secondary_type");
                 pokemon.primary_type_icon = rs.getString("primary_type_icon");
                 pokemon.secondary_type_icon = rs.getString("secondary_type_icon");
+                pokemon.primary_type_name = rs.getString("primary_type_name");
+                pokemon.secondary_type_name = rs.getString("secondary_type_name");
+                pokemon.cries = rs.getString("cries");
 
                 pokemon.hp = rs.getInt("hp");
                 pokemon.attack = rs.getInt("attack");
