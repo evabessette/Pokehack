@@ -2,9 +2,10 @@
 
 ## INITIALISATION
 
-1. Clonez le dépôt.
+1. Clonez le dépôt GitHub sur votre machine locale (https://github.com/evabessette/Pokehack).
 2. Créez une base de données PostgreSQL nommée "PokeHack".
-3. Modifiez le fichier `src/main/resources/config.properties` avec vos informations de connexion.
+3. Exécutez le script `database/schema.sql` pour créer les tables nécessaires.
+4. Créez un fichier `config.properties` dans `src/main/resources` avec vos informations de connexion (ex: config.properties.example).
 
 
 ## STRUCTURE DU PROJET
@@ -12,8 +13,6 @@
 pokehack/
 ├── pom.xml
 ├── README.md
-├── database/
-│   └── schema.sql
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -35,15 +34,15 @@ pokehack/
 │   │       ├── fonts/
 │   │       ├── styles.css
 │   │       ├── schema.sql
-│   │       └── config.properties
+│   │       └── config.properties.example
 │   │           
 ```
 
 ## DATABASE
 
 ```
-id, nom, image_url, type_principal,
-type_secondaire, hp, attaque,
+id, nom, image_url, type_principal, type_principal_icon, type_principal_name,
+type_secondaire, type_secondaire_icon, type_secondaire_name, hp, attaque,
 defense, attaque_spéciale, defense_spéciale,
 vitesse, poids, taille, date_capture
 ```
