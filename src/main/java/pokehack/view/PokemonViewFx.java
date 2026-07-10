@@ -38,6 +38,7 @@ public class PokemonViewFx {
     public final ImageView gifCapture;
     public final Button catchButton;
     public final ToggleButton inventoryToggle;
+    public final Button randomButton;
 
     private final HBox racine;
     private final HBox measurements;
@@ -250,6 +251,26 @@ public class PokemonViewFx {
         stats.setMaxWidth(Double.MAX_VALUE);
 
 
+        // ---- Bouton random ----
+
+        randomButton = new Button();
+        randomButton.getStyleClass().add("random-button");
+
+        ImageView shuffleIcon = new ImageView(
+                Objects.requireNonNull(
+                        getClass().getResource("/images/random.png"),
+                        "Image introuvable : /images/random.png"
+                ).toExternalForm()
+        );
+
+        shuffleIcon.setFitWidth(24);
+        shuffleIcon.setFitHeight(24);
+        shuffleIcon.setPreserveRatio(true);
+
+        randomButton.setGraphic(shuffleIcon);
+        VBox.setMargin(randomButton, new Insets(4, 0, 0, 0));
+
+
 
         // ------ Input rechercher -----
         recherche = new HBox(16, champNomPokemon, catchButton);
@@ -264,7 +285,8 @@ public class PokemonViewFx {
                 measurements,
                 statistiquesTitre,
                 stats,
-                inventoryToggle
+                inventoryToggle,
+                randomButton
         );
 
         card.setAlignment(Pos.CENTER);
@@ -371,6 +393,7 @@ public class PokemonViewFx {
 
         messageErreur.setMaxWidth(Double.MAX_VALUE);
         messageErreur.setAlignment(Pos.CENTER);
+
 
         // ----- Contenu Inventaire -----
         inventairePanel.setVisible(false);

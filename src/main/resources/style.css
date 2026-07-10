@@ -247,3 +247,12 @@
     -fx-font-size: 10px;
     -fx-padding: 5px 7px;
 }
+
+.random-button,
+.random-button:hover,
+.random-button:pressed {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 4;
+    -fx-cursor: hand;
+}
