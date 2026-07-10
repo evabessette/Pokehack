@@ -12,7 +12,12 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
+
 import pokehack.modele.Pokemon;
+import javafx.animation.PauseTransition;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +28,6 @@ public class PokemonViewFx {
     public final Label nomPokemon, idPokemon, typePokemon, typePokemon2;
     public final Label hp, attack, defense, speed;
     public final Label statistiquesTitre, messageErreur;
-    public final Label weightLabel, heightLabel;
     public final Label weightValue, heightValue;
     public final TextField champNomPokemon;
     public final ImageView imagePokemon;
@@ -31,6 +35,7 @@ public class PokemonViewFx {
     public final ImageView primaryTypeName;
     public final ImageView secondaryTypeIcon;
     public final ImageView secondaryTypeName;
+    public final ImageView gifCapture;
     public final Button catchButton;
     public final ToggleButton inventoryToggle;
 
@@ -62,11 +67,13 @@ public class PokemonViewFx {
     private final HBox layoutPrincipal;
     private final VBox inventairePanel;
     private final VBox listePokemon;
+    private final HBox typesico;
 
-    private static final double LARGEUR_MIN_CONTENU_PRINCIPAL = 280;
-    private static final double LARGEUR_MIN_INVENTAIRE = 160;
-    private static final double LARGEUR_PREF_INVENTAIRE = 220;
-    private static final double LARGEUR_MAX_INVENTAIRE = 260;
+    private static final double LARGEUR_MIN_CONTENU_PRINCIPAL = 350;
+    private static final double LARGEUR_MIN_INVENTAIRE = 300;
+    private static final double LARGEUR_PREF_INVENTAIRE = 320;
+    private static final double LARGEUR_MAX_INVENTAIRE = 340;
+    private static final double HAUTEUR = 750;
 
     public PokemonViewFx() {
 
@@ -78,6 +85,7 @@ public class PokemonViewFx {
         imagePokemon.setPreserveRatio(true);
         imagePokemon.setSmooth(false);
 
+        // Input nom pokemon pour recherche
         champNomPokemon = new TextField();
         champNomPokemon.setPromptText("Entrez le nom ou l'ID du Pokémon");
         HBox.setHgrow(champNomPokemon, Priority.ALWAYS);
@@ -87,8 +95,8 @@ public class PokemonViewFx {
         catchButton = new Button("Attraper");
         ImageView pokeballIcon = new ImageView(
             Objects.requireNonNull(
-                    getClass().getResource("/images/pokeball.png"),
-                    "Image introuvable : /images/pokeball.png"
+                getClass().getResource("/images/pokeball.png"),
+                "Image introuvable : /images/pokeball.png"
             ).toExternalForm()
         );
         pokeballIcon.setFitWidth(24);
@@ -98,49 +106,50 @@ public class PokemonViewFx {
         catchButton.setGraphicTextGap(8);
         catchButton.getStyleClass().add("bouton-catch");
 
+        // ----- Animation GIF pokeball de capture ------
+        Image gif = new Image(
+            Objects.requireNonNull(
+                getClass().getResourceAsStream("/images/capture.gif"),
+                "GIF introuvable : /images/capture.gif")
+            );
+        gifCapture = new ImageView(gif);
+        gifCapture.setFitWidth(200);
+        gifCapture.setFitHeight(200);
+        gifCapture.setPreserveRatio(true);
+        gifCapture.setVisible(false);
+        gifCapture.setManaged(false);
+        gifCapture.setMouseTransparent(true);
+
+        StackPane animationPokemon = new StackPane(
+                imagePokemon,
+                gifCapture
+        );
+        animationPokemon.setAlignment(Pos.CENTER);
+
+        // ----- Inventaire -----
         inventoryToggle = new ToggleButton("Montrer l'inventaire");
         inventoryToggle.getStyleClass().add("toggle-inventaire");
 
+        // ----- Message -----
         messageErreur = new Label();
         messageErreur.getStyleClass().add("message-erreur");
 
+        // ----- Statistique -----
         statistiquesTitre = new Label("Statistiques");
         statistiquesTitre.getStyleClass().add("statistiques-titre");
 
+        // ----- Type du pokemon -----
         typePokemon = new Label("Plante");
         typePokemon.getStyleClass().add("type-pokemon");
 
         typePokemon2 = new Label("Poison");
         typePokemon2.getStyleClass().add("type-pokemon2");
 
-        primaryTypeIcon = new ImageView();
-        primaryTypeIcon.setFitHeight(24);
-        primaryTypeIcon.setFitWidth(24);
-        primaryTypeIcon.setPreserveRatio(true);
-        primaryTypeIcon.setSmooth(true);
-
-        primaryTypeName = new ImageView();
-        primaryTypeName.setFitHeight(24);
-        primaryTypeName.setFitWidth(24);
-        primaryTypeName.setPreserveRatio(true);
-        primaryTypeName.setSmooth(true);
-
-        secondaryTypeIcon = new ImageView();
-        secondaryTypeIcon.setFitHeight(24);
-        secondaryTypeIcon.setFitWidth(24);
-        secondaryTypeIcon.setPreserveRatio(true);
-        secondaryTypeIcon.setSmooth(true);
-
-        secondaryTypeName = new ImageView();
-        secondaryTypeName.setFitHeight(24);
-        secondaryTypeName.setFitWidth(24);
-        secondaryTypeName.setPreserveRatio(true);
-        secondaryTypeName.setSmooth(true);
-
-        types = new HBox(10, primaryTypeIcon, primaryTypeName, secondaryTypeIcon, secondaryTypeName);
+        types = new HBox(10, typePokemon, typePokemon2);
         types.getStyleClass().add("types");
         types.setAlignment(Pos.CENTER);
 
+        // ----- Informations du pokemon -----
         nomPokemon = new Label("Bulbizarre");
         nomPokemon.getStyleClass().add("nom-pokemon");
 
@@ -171,22 +180,17 @@ public class PokemonViewFx {
         spdProgress.setMaxWidth(Double.MAX_VALUE);
         spdNumber = new Label("60");
 
-        weightLabel = new Label("Weight");
-        heightLabel = new Label("Height");
-
         weightValue = new Label("6.5 kg");
         heightValue = new Label("50 cm");
 
-        weight = new VBox(weightValue, weightLabel);
+        weight = new VBox(weightValue);
         weight.setAlignment(Pos.CENTER);
 
-        height = new VBox(heightValue, heightLabel);
+        height = new VBox(heightValue);
         height.setAlignment(Pos.CENTER);
 
         weightValue.getStyleClass().add("weight-value");
         heightValue.getStyleClass().add("height-value");
-        weightLabel.getStyleClass().add("weight-label");
-        heightLabel.getStyleClass().add("height-label");
 
         weight.getStyleClass().add("measurement-box");
         height.getStyleClass().add("measurement-box");
@@ -194,6 +198,7 @@ public class PokemonViewFx {
         measurements = new HBox(16, weight, height);
         measurements.setAlignment(Pos.CENTER);
 
+        // ----- Statistiques du pokemon -----
         statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
         statsBarHP.setAlignment(Pos.CENTER);
         statsBarHP.setMaxWidth(Double.MAX_VALUE);
@@ -218,13 +223,14 @@ public class PokemonViewFx {
         stats.setAlignment(Pos.CENTER);
         stats.setMaxWidth(Double.MAX_VALUE);
 
+        // ------ Input rechercher -----
         recherche = new HBox(16, champNomPokemon, catchButton);
         recherche.setMaxWidth(Double.MAX_VALUE);
 
         card = new VBox(
                 10,
                 nomPokemon,
-                imagePokemon,
+                animationPokemon,
                 idPokemon,
                 types,
                 measurements,
@@ -232,6 +238,7 @@ public class PokemonViewFx {
                 stats,
                 inventoryToggle
         );
+
         card.setAlignment(Pos.CENTER);
         card.setMaxWidth(Double.MAX_VALUE);
 
@@ -240,13 +247,73 @@ public class PokemonViewFx {
         measurements.getStyleClass().add("measurements");
         recherche.getStyleClass().add("recherche");
 
-        Label inventaireTitre = new Label("Pokémon attrapés");
+        // ------ INVENTAIRE -------
+
+        // ----- TYPES
+        primaryTypeIcon = new ImageView();
+        primaryTypeIcon.setFitHeight(24);
+        primaryTypeIcon.setFitWidth(24);
+        primaryTypeIcon.setPreserveRatio(true);
+        primaryTypeIcon.setSmooth(true);
+
+        primaryTypeName = new ImageView();
+        primaryTypeName.setFitHeight(24);
+        primaryTypeName.setFitWidth(24);
+        primaryTypeName.setPreserveRatio(true);
+        primaryTypeName.setSmooth(true);
+
+        secondaryTypeIcon = new ImageView();
+        secondaryTypeIcon.setFitHeight(24);
+        secondaryTypeIcon.setFitWidth(24);
+        secondaryTypeIcon.setPreserveRatio(true);
+        secondaryTypeIcon.setSmooth(true);
+
+        secondaryTypeName = new ImageView();
+        secondaryTypeName.setFitHeight(24);
+        secondaryTypeName.setFitWidth(24);
+        secondaryTypeName.setPreserveRatio(true);
+        secondaryTypeName.setSmooth(true);
+
+        typesico = new HBox(10, primaryTypeIcon, primaryTypeName, secondaryTypeIcon, secondaryTypeName);
+        typesico.getStyleClass().add("types");
+        typesico.setAlignment(Pos.CENTER);
+
+        // ----- Image pokemon -----
+        ImageView imageInventaire = new ImageView(
+                Objects.requireNonNull(
+                        getClass().getResource("/images/pokemon.png"),
+                        "Image introuvable : /images/pokemon.png"
+                ).toExternalForm()
+        );
+
+        imageInventaire.setFitWidth(120);
+        imageInventaire.setFitHeight(120);
+        imageInventaire.setPreserveRatio(true);
+        imageInventaire.setSmooth(true);
+
+        // ----- Titre -----
+        Label inventaireTitre = new Label("Mes Pokémon");
         inventaireTitre.getStyleClass().add("inventaire-titre");
 
+        // ----- Liste -----
         listePokemon = new VBox(8);
         listePokemon.setAlignment(Pos.TOP_LEFT);
+        ScrollPane scrollInventaire = new ScrollPane(listePokemon);
 
-        inventairePanel = new VBox(12, inventaireTitre, listePokemon);
+        scrollInventaire.setFitToWidth(true);
+        scrollInventaire.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollInventaire.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollInventaire.setPannable(true);
+        scrollInventaire.getStyleClass().add("scroll-inventaire");
+
+        VBox.setVgrow(scrollInventaire, Priority.ALWAYS);
+
+        inventairePanel = new VBox(
+                12,
+                imageInventaire,
+                inventaireTitre,
+                scrollInventaire
+        );
         inventairePanel.setMinWidth(LARGEUR_MIN_INVENTAIRE);
         inventairePanel.setPrefWidth(LARGEUR_PREF_INVENTAIRE);
         inventairePanel.setMaxWidth(LARGEUR_MAX_INVENTAIRE);
@@ -254,6 +321,7 @@ public class PokemonViewFx {
         inventairePanel.getStyleClass().add("inventaire-panel");
         inventairePanel.setAlignment(Pos.TOP_CENTER);
 
+        // ----- Contenu Principal -----
         VBox contenuPrincipal = new VBox(recherche, card, messageErreur);
         contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);
         contenuPrincipal.setMaxWidth(Double.MAX_VALUE);
@@ -261,11 +329,13 @@ public class PokemonViewFx {
 
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
         layoutPrincipal.setMaxWidth(Double.MAX_VALUE);
+        layoutPrincipal.setMinHeight(HAUTEUR);
         layoutPrincipal.setMaxHeight(Double.MAX_VALUE);
 
         HBox.setHgrow(contenuPrincipal, Priority.ALWAYS);
         HBox.setHgrow(inventairePanel, Priority.NEVER);
 
+        // ----- Contenu Inventaire -----
         inventairePanel.setVisible(false);
         inventairePanel.setManaged(false);
 
@@ -288,6 +358,7 @@ public class PokemonViewFx {
         racine.getStyleClass().add("racine");
     }
 
+    // ----- Liste inventaire -----
     public void setInventaireItems(
             List<Pokemon> pokemons,
             Consumer<Pokemon> onVoir,
@@ -296,27 +367,95 @@ public class PokemonViewFx {
         listePokemon.getChildren().clear();
 
         if (pokemons == null || pokemons.isEmpty()) {
-            listePokemon.getChildren().add(new Label("Aucun Pokémon capturé"));
+            Label vide = new Label("Aucun Pokémon capturé");
+            vide.getStyleClass().add("inventaire-vide");
+
+            listePokemon.getChildren().add(vide);
             return;
         }
 
         for (Pokemon pokemon : pokemons) {
-            Label nom = new Label(capitaliser(pokemon.name) + " #" + pokemon.id);
+            Label nom = new Label(
+                    capitaliser(pokemon.name) + " #" + pokemon.id
+            );
+            nom.getStyleClass().add("pokemon-inventaire-nom");
+            nom.setOnMouseClicked(event -> onVoir.accept(pokemon));
+            nom.setCursor(javafx.scene.Cursor.HAND);
 
-            Button voir = new Button("Voir");
-            Button supprimer = new Button("Suppr.");
+            // ----- Icônes propres à chaque Pokémon -----
+            ImageView iconeTypePrincipal = creerIconeType(
+                    pokemon.primary_type_icon
+            );
+            ImageView iconeTypeSecondaire = creerIconeType(
+                    pokemon.secondary_type_icon
+            );
+
+            HBox typesInventaire = new HBox(
+                    2,
+                    iconeTypePrincipal,
+                    iconeTypeSecondaire
+            );
+
+            typesInventaire.setAlignment(Pos.CENTER_LEFT);
+            typesInventaire.getStyleClass().add("types-inventaire");
+
+            // ----- Icone poubelle - DELETE -----
+            ImageView iconePoubelle = new ImageView(
+                    Objects.requireNonNull(
+                            getClass().getResource("/images/trash.png"),
+                            "Image introuvable : /images/trash.png"
+                    ).toExternalForm()
+            );
+            iconePoubelle.setFitWidth(18);
+            iconePoubelle.setFitHeight(18);
+            iconePoubelle.setPreserveRatio(true);
+
+            Button supprimer = new Button();
+
+            supprimer.setMinSize(30, 30);
+            supprimer.setPrefSize(30, 30);
+            supprimer.setMaxSize(30, 30);
+            supprimer.setGraphic(iconePoubelle);
+            supprimer.getStyleClass().add("bouton-supprimer");
+            supprimer.setOnAction(event -> {
+                event.consume();
+                onSupprimer.accept(pokemon);
+            });
 
             Region espace = new Region();
             HBox.setHgrow(espace, Priority.ALWAYS);
 
-            HBox ligne = new HBox(8, nom, espace, voir, supprimer);
-            ligne.setAlignment(Pos.CENTER_LEFT);
+            HBox ligne = new HBox(
+                    8,
+                    typesInventaire,
+                    nom,
+                    espace,
+                    supprimer
+            );
 
-            voir.setOnAction(e -> onVoir.accept(pokemon));
-            supprimer.setOnAction(e -> onSupprimer.accept(pokemon));
+            ligne.setAlignment(Pos.CENTER_LEFT);
+            ligne.setMaxWidth(Double.MAX_VALUE);
+            ligne.getStyleClass().add("ligne-inventaire");
 
             listePokemon.getChildren().add(ligne);
         }
+    }
+
+    // ----- Icone type dans la liste -----
+    private ImageView creerIconeType(String url) {
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(24);
+        imageView.setFitHeight(24);
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+
+        if (url != null && !url.isBlank()) {
+            imageView.setImage(new Image(url, true));
+            imageView.setVisible(true);
+            imageView.setManaged(true);
+        }
+
+        return imageView;
     }
 
     public Parent getRoot() {
@@ -343,5 +482,50 @@ public class PokemonViewFx {
         }
 
         stage.setWidth(stage.getWidth() + changementLargeur);
+    }
+
+    // ----- Animation durant la capture -----
+    public void demarrerAnimationCapture() {
+        gifCapture.setManaged(true);
+        gifCapture.setVisible(true);
+    }
+
+    public void arreterAnimationCapture() {
+        gifCapture.setVisible(false);
+        gifCapture.setManaged(false);
+    }
+
+    public void masquerInformationsPokemon() {
+        nomPokemon.setVisible(false);
+        nomPokemon.setManaged(false);
+        imagePokemon.setVisible(false);
+        imagePokemon.setManaged(false);
+        idPokemon.setVisible(false);
+        idPokemon.setManaged(false);
+        types.setVisible(false);
+        types.setManaged(false);
+        measurements.setVisible(false);
+        measurements.setManaged(false);
+        statistiquesTitre.setVisible(false);
+        statistiquesTitre.setManaged(false);
+        stats.setVisible(false);
+        stats.setManaged(false);
+    }
+
+    public void afficherInformationsPokemon() {
+        nomPokemon.setVisible(true);
+        nomPokemon.setManaged(true);
+        imagePokemon.setVisible(true);
+        imagePokemon.setManaged(true);
+        idPokemon.setVisible(true);
+        idPokemon.setManaged(true);
+        types.setVisible(true);
+        types.setManaged(true);
+        measurements.setVisible(true);
+        measurements.setManaged(true);
+        statistiquesTitre.setVisible(true);
+        statistiquesTitre.setManaged(true);
+        stats.setVisible(true);
+        stats.setManaged(true);
     }
 }
