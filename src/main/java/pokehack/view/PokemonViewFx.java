@@ -268,14 +268,27 @@ public class PokemonViewFx {
         );
 
         randomButton.setGraphic(diceIcon);
-        VBox.setMargin(randomButton, new Insets(4, 0, 0, 0));
 
-        diceIcon.setFitWidth(32);
-        diceIcon.setFitHeight(32);
+        diceIcon.setFitWidth(25);
+        diceIcon.setFitHeight(25);
         diceIcon.setPreserveRatio(true);
 
+        champNomPokemon.setMaxWidth(Double.MAX_VALUE);
+        champNomPokemon.setPadding(new Insets(12, 48, 12, 16));
+
+        randomButton.setMinSize(36, 36);
+        randomButton.setPrefSize(36, 36);
+        randomButton.setMaxSize(36, 36);
+        randomButton.setFocusTraversable(false);
+
+        StackPane champAvecRandom = new StackPane(champNomPokemon, randomButton);
+        StackPane.setAlignment(randomButton, Pos.CENTER_RIGHT);
+        StackPane.setMargin(randomButton, new Insets(0, 6, 0, 0));
+
+        HBox.setHgrow(champAvecRandom, Priority.ALWAYS);
+
         // ------ Input rechercher -----
-        recherche = new HBox(16, champNomPokemon, catchButton);
+        recherche = new HBox(16, champAvecRandom, catchButton);
         recherche.setMaxWidth(Double.MAX_VALUE);
 
         card = new VBox(
@@ -287,8 +300,7 @@ public class PokemonViewFx {
                 measurements,
                 statistiquesTitre,
                 stats,
-                inventoryToggle,
-                randomButton
+                inventoryToggle
         );
 
         card.setAlignment(Pos.CENTER);
