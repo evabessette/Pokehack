@@ -260,21 +260,19 @@ public class PokemonViewFx {
         randomButton = new Button();
         randomButton.getStyleClass().add("random-button");
 
-        ImageView shuffleIcon = new ImageView(
+        ImageView diceIcon = new ImageView(
                 Objects.requireNonNull(
-                        getClass().getResource("/images/random.png"),
-                        "Image introuvable : /images/random.png"
+                        getClass().getResource("/images/dice.png"),
+                        "Image introuvable : /images/dice.png"
                 ).toExternalForm()
         );
 
-        shuffleIcon.setFitWidth(24);
-        shuffleIcon.setFitHeight(24);
-        shuffleIcon.setPreserveRatio(true);
-
-        randomButton.setGraphic(shuffleIcon);
+        randomButton.setGraphic(diceIcon);
         VBox.setMargin(randomButton, new Insets(4, 0, 0, 0));
 
-
+        diceIcon.setFitWidth(32);
+        diceIcon.setFitHeight(32);
+        diceIcon.setPreserveRatio(true);
 
         // ------ Input rechercher -----
         recherche = new HBox(16, champNomPokemon, catchButton);
