@@ -349,10 +349,16 @@ public class PokemonViewFx {
         inventairePanel.setAlignment(Pos.TOP_CENTER);
 
         // ----- Contenu Principal -----
-        VBox contenuPrincipal = new VBox(recherche, card, messageErreur);
+
+        Region espaceVide = new Region();
+        VBox.setVgrow(espaceVide, Priority.ALWAYS);
+
+
+        VBox contenuPrincipal = new VBox(recherche, card, espaceVide, messageErreur);
         contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);
         contenuPrincipal.setMaxWidth(Double.MAX_VALUE);
-        contenuPrincipal.setPadding(new Insets(24));
+        contenuPrincipal.setPadding(new Insets(24, 24, 0, 24));
+        contenuPrincipal.setMaxHeight(Double.MAX_VALUE);
 
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
         layoutPrincipal.setMaxWidth(Double.MAX_VALUE);
@@ -361,6 +367,9 @@ public class PokemonViewFx {
 
         HBox.setHgrow(contenuPrincipal, Priority.ALWAYS);
         HBox.setHgrow(inventairePanel, Priority.NEVER);
+
+        messageErreur.setMaxWidth(Double.MAX_VALUE);
+        messageErreur.setAlignment(Pos.CENTER);
 
         // ----- Contenu Inventaire -----
         inventairePanel.setVisible(false);
