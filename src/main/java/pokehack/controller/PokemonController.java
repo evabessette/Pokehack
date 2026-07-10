@@ -69,6 +69,7 @@ public class PokemonController {
                     );
                     vue.catchButton.setDisable(false);
                 });
+                vue.champNomPokemon.clear();
                 delai.play();
             });
 
