@@ -13,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.util.Objects;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 
 import pokehack.modele.Pokemon;
 import pokehack.modele.PokemonDAO;
@@ -24,6 +25,7 @@ public class PokemonController {
     private final PokemonViewFx vue;
     private final PokemonApiService apiService;
     private final PokemonDAO pokemonDAO;
+    private Pokemon pokemonActuel;
 
     // Controlleur pour gérer les interactions entre la vue et le modèle
     public PokemonController(PokemonViewFx vue) {
@@ -200,13 +202,19 @@ public class PokemonController {
 
     // Mettre à jour la vue avec les informations du Pokémon
     private void mettreAJourVue(Pokemon pokemon) {
+        this.pokemonActuel = pokemon;
         vue.nomPokemon.setText(capitaliser(pokemon.name));
         vue.idPokemon.setText("#" + pokemon.id);
 
         if (pokemon.image_url != null && !pokemon.image_url.isBlank()) {
             vue.imagePokemon.setImage(new Image(pokemon.image_url, true));
         }
+        // ----- Jouer le son en cliquant -----
+        vue.imagePokemon.setOnMouseClicked(event -> {
+            jouerCriPokemon(pokemonActuel);
+        });
 
+        vue.imagePokemon.setCursor(javafx.scene.Cursor.HAND);
         vue.typePokemon.setText(capitaliser(pokemon.primary_type));
 
         boolean aTypeSecondaire = pokemon.secondary_type != null && !pokemon.secondary_type.isBlank();
@@ -325,4 +333,20 @@ public class PokemonController {
         label.getStyleClass().add(classeType);
     }
 
+    // Jouer le crie du Pokémon
+    private void jouerCriPokemon(Pokemon pokemon) {
+        if (pokemon == null || pokemon.cries == null || pokemon.cries.isBlank()) {
+            return;
+        }
+
+        try {
+            AudioClip cri = new AudioClip(pokemon.cries);
+            cri.setVolume(0.7);
+            cri.play();
+        } catch (Exception e) {
+            vue.messageErreur.setText(
+                    "Impossible de jouer le cri : " + e.getMessage()
+            );
+        }
+    }
 }
