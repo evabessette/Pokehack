@@ -1,8 +1,14 @@
 .root {
     /* Couleurs de base */
     -fx-couleur-primaire: #2c3e50;
+    -fx-couleur-secondaire: #dbe7f5;
     -fx-couleur-accent: #e74c3c;
-    -fx-couleur-fond: #ecf0f1;
+    -fx-couleur-fond: #3f9aed;
+    -fx-couleur-bg: linear-gradient(
+            to bottom right,
+            #588fc0,
+            #b0cce7
+    );
     -fx-couleur-texte: derive(-fx-couleur-primaire, -20%);
 
     /* Couleurs des 18 types */
@@ -24,6 +30,7 @@
     -fx-type-tenebres:  #705746;
     -fx-type-acier:     #b7b7ce;
     -fx-type-fee:       #d685ad;
+
 }
 
 @font-face {
@@ -31,6 +38,12 @@
     src: url("fonts/PressStart2P-Regular.ttf");
 }
 
+.racine {
+    -fx-background-color: -fx-couleur-bg;
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 14;
+    -fx-padding: 10 5;
+}
 /*.root { -fx-border-color: red; }*/
 
 /*.card, .stats, .measurements, .recherche { -fx-border-color: red; }*/
@@ -41,9 +54,40 @@
     -fx-padding: 20 0 0 0;
 }
 
+.id-pokemon {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
 /*.measurement-box {*/
 /*    -fx-border-color: red;*/
 /*}*/
+
+.type-pokemon {
+    -fx-background-color: #7ac74c;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+}
+
+.type-pokemon2 {
+    -fx-background-color: #a33ea1;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+}
+
+.weight-value,
+.height-value {
+    -fx-background-color: -fx-couleur-fond;
+    -fx-font-size: x-large;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 4 10 4 10;
+}
 
 .hp-progress .bar {
     -fx-background-color: red;
@@ -65,62 +109,141 @@
     -fx-font-weight: bold;
 }
 
-.id-pokemon {
+/* Input entrer nom pokemon */
+.champ-nom-pokemon {
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-padding: 12px 16px;
+    -fx-background-radius: 8px;
 }
 
-
-.type-pokemon {
-    -fx-background-color: #7ac74c;
-    -fx-text-fill: white;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
-
-.type-pokemon2 {
-    -fx-background-color: #a33ea1;
-    -fx-text-fill: white;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
-
-
-.weight-value,
-.height-value {
-    -fx-background-color: #8e8e8e;
-    -fx-font-size: x-large;
-    -fx-text-fill: white;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-    -fx-padding: 4 10 4 10;
-
-}
-
-.inventaire-titre {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-
-/* Bouton Attraper */
-.bouton-catch {
+/* Bouton */
+.button {
     -fx-background-color: #e53935;
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-couleur-secondaire;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 18px;
+    -fx-padding: 10px 16px;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
 }
 
-.bouton-catch:hover {
+.button:hover {
     -fx-background-color: #c62828;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button:pressed {
+    -fx-background-color: #8e0000;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.bouton-supprimer {
+    -fx-background-color: transparent;
+    -fx-padding: 4px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
 }
 
-.bouton-catch:pressed {
+.bouton-supprimer:hover {
+    -fx-background-color: rgba(231, 76, 60, 0.15);
+    -fx-padding: 4px;
+    -fx-border-width: 1px;
+}
+
+.bouton-supprimer:pressed {
+    -fx-background-color: transparent;
+}
+
+/* Inventaire */
+
+.toggle-inventaire {
+    -fx-background-color: #e53935;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.toggle-inventaire:hover {
+    -fx-background-color: #c62828;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.toggle-inventaire:pressed {
     -fx-background-color: #8e0000;
-.message-erreur {
-    -fx-padding: 30 0 0 0;
+    -fx-text-fill: -fx-couleur-secondaire;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.inventaire-panel {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.inventaire-titre {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.inventaire-panel .label {
+    -fx-padding: 10;
+}
+
+.scroll-inventaire {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-inventaire > .viewport {
+    -fx-background-color: transparent;
+}
+
+.ligne-inventaire {
+    -fx-padding: 8px;
+    -fx-background-radius: 8px;
+}
+
+.ligne-inventaire:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.liste-pokemon {
+    -fx-background-color: transparent;
+}
+
+.pokemon-inventaire-nom {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+}
+
+.pokemon-inventaire-nom:hover {
+    -fx-text-fill: -fx-couleur-accent;
+    -fx-underline: true;
+}
+
+.types-inventaire {
+    -fx-alignment: center-left;
+}
+
+.bouton-supprimer {
+    -fx-font-size: 10px;
+    -fx-padding: 5px 7px;
 }
