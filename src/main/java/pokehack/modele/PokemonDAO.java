@@ -20,6 +20,8 @@ public class PokemonDAO {
                     secondary_type,
                     primary_type_icon,
                     secondary_type_icon,
+                    primary_type_name,
+                    secondary_type_name,
                     hp,
                     attack,
                     defense,
@@ -29,7 +31,7 @@ public class PokemonDAO {
                     weight,
                     height
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (id) DO UPDATE SET
                     name = EXCLUDED.name,
                     image_url = EXCLUDED.image_url,
@@ -37,6 +39,8 @@ public class PokemonDAO {
                     secondary_type = EXCLUDED.secondary_type,
                     primary_type_icon = EXCLUDED.primary_type_icon,
                     secondary_type_icon = EXCLUDED.secondary_type_icon,
+                    primary_type_name = EXCLUDED.primary_type_name,
+                    secondary_type_name = EXCLUDED.secondary_type_name,
                     hp = EXCLUDED.hp,
                     attack = EXCLUDED.attack,
                     defense = EXCLUDED.defense,
@@ -58,14 +62,16 @@ public class PokemonDAO {
             ps.setString(5, p.secondary_type);
             ps.setString(6, p.primary_type_icon);
             ps.setString(7, p.secondary_type_icon);
-            ps.setInt(8, p.hp);
-            ps.setInt(9, p.attack);
-            ps.setInt(10, p.defense);
-            ps.setInt(11, p.special_attack);
-            ps.setInt(12, p.special_defense);
-            ps.setInt(13, p.speed);
-            ps.setDouble(14, p.weight);
-            ps.setDouble(15, p.height);
+            ps.setString(8, p.primary_type_name);
+            ps.setString(9, p.secondary_type_name);
+            ps.setInt(10, p.hp);
+            ps.setInt(11, p.attack);
+            ps.setInt(12, p.defense);
+            ps.setInt(13, p.special_attack);
+            ps.setInt(14, p.special_defense);
+            ps.setInt(15, p.speed);
+            ps.setDouble(16, p.weight);
+            ps.setDouble(17, p.height);
 
             ps.executeUpdate();
         }
