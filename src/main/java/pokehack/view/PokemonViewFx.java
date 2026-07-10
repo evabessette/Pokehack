@@ -129,6 +129,7 @@ public class PokemonViewFx {
         // ----- Inventaire -----
         inventoryToggle = new ToggleButton("Montrer l'inventaire");
         inventoryToggle.getStyleClass().add("toggle-inventaire");
+        VBox.setMargin(inventoryToggle, new Insets(12, 0, 0, 0));
 
         // ----- Message -----
         messageErreur = new Label();
