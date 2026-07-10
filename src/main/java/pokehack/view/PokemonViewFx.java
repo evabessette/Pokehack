@@ -120,7 +120,7 @@ public class PokemonViewFx {
         idPokemon = new Label("#1");
         idPokemon.getStyleClass().add("id-pokemon");
 
-        hp = new Label("HP");
+        hp = new Label("HP ");
         hpProgress = new ProgressBar(0.50);
         hpProgress.getStyleClass().add("hp-progress");
         hpProgress.setMaxWidth(Double.MAX_VALUE);
