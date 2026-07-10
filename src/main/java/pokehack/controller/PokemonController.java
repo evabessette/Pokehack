@@ -8,6 +8,8 @@ import pokehack.view.PokemonViewFx;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javafx.concurrent.Task;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
@@ -79,6 +81,30 @@ public PokemonController(PokemonViewFx vue) {
         thread.setDaemon(true);
         thread.start();
     });
+
+    // Logique pour bouton random
+
+    vue.randomButton.setOnAction(e -> {
+        int idAleatoire = new Random().nextInt(1000) + 1;
+        String recherche = String.valueOf(idAleatoire);
+
+        vue.champNomPokemon.setText(recherche);
+        vue.messageErreur.setText("Chargement du Pokémon aléatoire...");
+
+        try {
+            Pokemon pokemon = apiService.rechercherPokemon(recherche);
+
+            pokemonDAO.capturer(pokemon);
+            chargerInventaire();
+
+            mettreAJourVue(pokemon);
+            vue.messageErreur.setText("");
+        } catch (Exception ex) {
+            vue.messageErreur.setText("Erreur avec le Pokémon aléatoire : " + ex.getMessage());
+        }
+    });
+
+
     chargerInventaire();
     chargerPokemonDepart();
 }
