@@ -132,6 +132,10 @@ public class PokemonViewFx {
         inventoryToggle.getStyleClass().add("toggle-inventaire");
         VBox.setMargin(inventoryToggle, new Insets(12, 0, 0, 0));
 
+        inventoryToggle.setPrefWidth(165);
+        inventoryToggle.setMinWidth(165);
+        inventoryToggle.setAlignment(Pos.CENTER);
+
         // ----- Message -----
         messageErreur = new Label();
         messageErreur.getStyleClass().add("message-erreur");
@@ -401,6 +405,7 @@ public class PokemonViewFx {
 
         inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             if (isSelected) {
+                inventoryToggle.setText("Fermer l'inventaire");
                 resizeWindowForInventory(true);
 
                 Platform.runLater(() -> {
@@ -408,6 +413,7 @@ public class PokemonViewFx {
                     inventairePanel.setManaged(true);
                 });
             } else {
+                inventoryToggle.setText("Montrer l'inventaire");
                 inventairePanel.setVisible(false);
                 inventairePanel.setManaged(false);
                 resizeWindowForInventory(false);
