@@ -9,28 +9,32 @@
             #588fc0,
             #b0cce7
     );
+    -fx-couleur-alert: linear-gradient(
+            to bottom right,
+            #f44b3b,
+            #f89186
+    );
     -fx-couleur-texte: derive(-fx-couleur-primaire, -20%);
 
     /* Couleurs des 18 types */
-    -fx-type-normal:    #a8a77a;
-    -fx-type-feu:       #ee8130;
-    -fx-type-eau:       #6390f0;
-    -fx-type-electrik:  #f7d02c;
-    -fx-type-plante:    #7ac74c;
-    -fx-type-glace:     #96d9d6;
-    -fx-type-combat:    #c22e28;
-    -fx-type-poison:    #a33ea1;
-    -fx-type-sol:       #e2bf65;
-    -fx-type-vol:       #a98ff3;
-    -fx-type-psy:       #f95587;
-    -fx-type-insecte:   #a6b91a;
-    -fx-type-roche:     #b6a136;
+    -fx-type-normal:    #A8A77A;
+    -fx-type-feu:       #EE8130;
+    -fx-type-eau:       #6390F0;
+    -fx-type-electrik:  #F7D02C;
+    -fx-type-plante:    #7AC74C;
+    -fx-type-glace:     #96D9D6;
+    -fx-type-combat:    #C22E28;
+    -fx-type-poison:    #A33EA1;
+    -fx-type-sol:       #E2BF65;
+    -fx-type-vol:       #A98FF3;
+    -fx-type-psy:       #F95587;
+    -fx-type-insecte:   #A6B91A;
+    -fx-type-roche:     #B6A136;
     -fx-type-spectre:   #735797;
-    -fx-type-dragon:    #6f35fc;
+    -fx-type-dragon:    #6F35FC;
     -fx-type-tenebres:  #705746;
-    -fx-type-acier:     #b7b7ce;
-    -fx-type-fee:       #d685ad;
-
+    -fx-type-acier:     #B7B7CE;
+    -fx-type-fee:       #D685AD;
 }
 
 @font-face {
@@ -62,22 +66,6 @@
 /*.measurement-box {*/
 /*    -fx-border-color: red;*/
 /*}*/
-
-.type-pokemon {
-    -fx-background-color: #7ac74c;
-    -fx-text-fill: -fx-couleur-secondaire;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
-
-.type-pokemon2 {
-    -fx-background-color: #a33ea1;
-    -fx-text-fill: -fx-couleur-secondaire;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
 
 .weight-value,
 .height-value {
@@ -214,6 +202,47 @@
     -fx-background-color: transparent;
 }
 
+.scroll-inventaire {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-inventaire > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-inventaire .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .track {
+    -fx-background-color: -fx-couleur-secondaire;
+    -fx-background-radius: 10px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-couleur-primaire;
+    -fx-background-radius: 10px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(-fx-couleur-primaire, -15%);
+}
+
+.scroll-inventaire .scroll-bar:vertical .increment-button,
+.scroll-inventaire .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-inventaire .scroll-bar:vertical .increment-arrow,
+.scroll-inventaire .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
 .ligne-inventaire {
     -fx-padding: 8px;
     -fx-background-radius: 8px;
@@ -246,4 +275,115 @@
 .bouton-supprimer {
     -fx-font-size: 10px;
     -fx-padding: 5px 7px;
+}
+
+/* Confirmation de suppression */
+.confirmation-suppression {
+    -fx-background-color: -fx-couleur-alert
+}
+
+.confirmation-suppression .header-panel {
+    -fx-background-color: transparent;
+}
+
+.confirmation-suppression .header-panel .label {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.confirmation-suppression .content.label {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 14px;
+}
+
+.confirmation-suppression .button-bar {
+    -fx-background-color: transparent;
+}
+
+/* TYPE - COULEUR*/
+.type-pokemon {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-weight: bold;
+    -fx-padding: 7px 14px;
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+}
+
+.type-normal {
+    -fx-background-color: -fx-type-normal;
+}
+
+.type-feu {
+    -fx-background-color: -fx-type-feu;
+}
+
+.type-eau {
+    -fx-background-color: -fx-type-eau;
+}
+
+.type-electrik {
+    -fx-background-color: -fx-type-electrik;
+}
+
+.type-plante {
+    -fx-background-color: -fx-type-plante;
+}
+
+.type-glace {
+    -fx-background-color: -fx-type-glace;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-combat {
+    -fx-background-color: -fx-type-combat;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-poison {
+    -fx-background-color: -fx-type-poison;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-sol {
+    -fx-background-color: -fx-type-sol;
+}
+
+.type-vol {
+    -fx-background-color: -fx-type-vol;
+}
+
+.type-psy {
+    -fx-background-color: -fx-type-psy;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-insecte {
+    -fx-background-color: -fx-type-insecte;
+}
+
+.type-roche {
+    -fx-background-color: -fx-type-roche;
+}
+
+.type-spectre {
+    -fx-background-color: -fx-type-spectre;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-dragon {
+    -fx-background-color: -fx-type-dragon;
+    -fx-text-fill: -fx-couleur-secondaire;
+}
+
+.type-tenebres {
+    -fx-background-color: -fx-type-tenebres;
+}
+
+.type-acier {
+    -fx-background-color: -fx-type-acier;
+}
+
+.type-fee {
+    -fx-background-color: -fx-type-fee;
 }
