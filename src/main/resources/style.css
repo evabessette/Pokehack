@@ -9,6 +9,11 @@
             #588fc0,
             #b0cce7
     );
+    -fx-couleur-alert: linear-gradient(
+            to bottom right,
+            #f44b3b,
+            #f89186
+    );
     -fx-couleur-texte: derive(-fx-couleur-primaire, -20%);
 
     /* Couleurs des 18 types */
@@ -30,7 +35,6 @@
     -fx-type-tenebres:  #705746;
     -fx-type-acier:     #b7b7ce;
     -fx-type-fee:       #d685ad;
-
 }
 
 @font-face {
@@ -62,22 +66,6 @@
 /*.measurement-box {*/
 /*    -fx-border-color: red;*/
 /*}*/
-
-.type-pokemon {
-    -fx-background-color: #7ac74c;
-    -fx-text-fill: -fx-couleur-secondaire;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
-
-.type-pokemon2 {
-    -fx-background-color: #a33ea1;
-    -fx-text-fill: -fx-couleur-secondaire;
-    -fx-padding: 4 10 4 10;
-    -fx-background-radius: 12;
-    -fx-font-weight: bold;
-}
 
 .weight-value,
 .height-value {
@@ -214,6 +202,47 @@
     -fx-background-color: transparent;
 }
 
+.scroll-inventaire {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-inventaire > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-inventaire .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .track {
+    -fx-background-color: -fx-couleur-secondaire;
+    -fx-background-radius: 10px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-couleur-primaire;
+    -fx-background-radius: 10px;
+}
+
+.scroll-inventaire .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(-fx-couleur-primaire, -15%);
+}
+
+.scroll-inventaire .scroll-bar:vertical .increment-button,
+.scroll-inventaire .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-inventaire .scroll-bar:vertical .increment-arrow,
+.scroll-inventaire .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
 .ligne-inventaire {
     -fx-padding: 8px;
     -fx-background-radius: 8px;
@@ -246,4 +275,113 @@
 .bouton-supprimer {
     -fx-font-size: 10px;
     -fx-padding: 5px 7px;
+}
+
+/* Confirmation de suppression */
+.confirmation-suppression {
+    -fx-background-color: -fx-couleur-alert
+}
+
+.confirmation-suppression .header-panel {
+    -fx-background-color: transparent;
+}
+
+.confirmation-suppression .header-panel .label {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.confirmation-suppression .content.label {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-size: 14px;
+}
+
+.confirmation-suppression .button-bar {
+    -fx-background-color: transparent;
+}
+
+/* TYPE - COULEUR*/
+.type-pokemon {
+    -fx-text-fill: -fx-couleur-primaire;
+    -fx-font-weight: bold;
+    -fx-padding: 7px 14px;
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+}
+
+.type-normal {
+    -fx-background-color: -fx-type-normal;
+}
+
+.type-feu {
+    -fx-background-color: -fx-type-feu;
+}
+
+.type-eau {
+    -fx-background-color: -fx-type-eau;
+}
+
+.type-electrik {
+    -fx-background-color: -fx-type-electrik;
+    -fx-text-fill: -fx-couleur-primaire;
+}
+
+.type-plante {
+    -fx-background-color: -fx-type-plante;
+}
+
+.type-glace {
+    -fx-background-color: -fx-type-glace;
+    -fx-text-fill: -fx-couleur-primaire;
+}
+
+.type-combat {
+    -fx-background-color: -fx-type-combat;
+}
+
+.type-poison {
+    -fx-background-color: -fx-type-poison;
+}
+
+.type-sol {
+    -fx-background-color: -fx-type-sol;
+    -fx-text-fill: -fx-couleur-primaire;
+}
+
+.type-vol {
+    -fx-background-color: -fx-type-vol;
+}
+
+.type-psy {
+    -fx-background-color: -fx-type-psy;
+}
+
+.type-insecte {
+    -fx-background-color: -fx-type-insecte;
+}
+
+.type-roche {
+    -fx-background-color: -fx-type-roche;
+}
+
+.type-spectre {
+    -fx-background-color: -fx-type-spectre;
+}
+
+.type-dragon {
+    -fx-background-color: -fx-type-dragon;
+}
+
+.type-tenebres {
+    -fx-background-color: -fx-type-tenebres;
+}
+
+.type-acier {
+    -fx-background-color: -fx-type-acier;
+    -fx-text-fill: -fx-couleur-primaire;
+}
+
+.type-fee {
+    -fx-background-color: -fx-type-fee;
 }
