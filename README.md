@@ -57,3 +57,5 @@ https://github.com/evabessette/Pokehack
 https://pokedex-examen-mi-session.vercel.app/
 
 https://pokeapi.co/api/v2/pokemon
+
+<a href="https://www.flaticon.com/free-icons/dice" title="dice icons">Dice icon created by bearicons - Flaticon</a>
