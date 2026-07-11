@@ -66,7 +66,7 @@ public class PokemonViewFx {
     public final Label spdNumber;
 
     private final HBox layoutPrincipal;
-    private final VBox inventairePanel;
+    public final VBox inventairePanel;
     private final VBox listePokemon;
     private final HBox typesico;
 
@@ -414,23 +414,6 @@ public class PokemonViewFx {
         inventairePanel.setVisible(false);
         inventairePanel.setManaged(false);
 
-        inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
-            if (isSelected) {
-                inventoryToggle.setText("Fermer l'inventaire");
-                resizeWindowForInventory(true);
-
-                Platform.runLater(() -> {
-                    inventairePanel.setVisible(true);
-                    inventairePanel.setManaged(true);
-                });
-            } else {
-                inventoryToggle.setText("Montrer l'inventaire");
-                inventairePanel.setVisible(false);
-                inventairePanel.setManaged(false);
-                resizeWindowForInventory(false);
-            }
-        });
-
         racine = layoutPrincipal;
         racine.getStyleClass().add("racine");
     }
@@ -553,7 +536,7 @@ public class PokemonViewFx {
     }
 
     // ----- Redimensionner la fenêtre lors de l'affichage ou la fermeture de l'inventaire -----
-    private void resizeWindowForInventory(boolean inventoryVisible) {
+    public void resizeWindowForInventory(boolean inventoryVisible) {
         Stage stage = (Stage) racine.getScene().getWindow();
 
         double changementLargeur;

@@ -1,5 +1,6 @@
 package pokehack.controller;
 
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.sql.SQLException;
@@ -91,6 +92,23 @@ public class PokemonController {
             Thread thread = new Thread(captureTask, "capture-pokemon");
             thread.setDaemon(true);
             thread.start();
+        });
+
+        vue.inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+            if (isSelected) {
+                vue.inventoryToggle.setText("Fermer l'inventaire");
+                vue.resizeWindowForInventory(true);
+
+                Platform.runLater(() -> {
+                    vue.inventairePanel.setVisible(true);
+                    vue.inventairePanel.setManaged(true);
+                });
+            } else {
+                vue.inventoryToggle.setText("Montrer l'inventaire");
+                vue.inventairePanel.setVisible(false);
+                vue.inventairePanel.setManaged(false);
+                vue.resizeWindowForInventory(false);
+            }
         });
 
         // Logique pour bouton random
