@@ -1,5 +1,10 @@
 # POKEHACK - TP 1 - EVA - MAD
 
+![Screenshot of app](src/main/resources/images/capture_3.png)
+
+![Screenshot of app](src/main/resources/images/capture_4.png)
+
+
 ## INITIALISATION
 
 1. Clonez le dépôt GitHub sur votre machine locale (https://github.com/evabessette/Pokehack).
