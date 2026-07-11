@@ -3,7 +3,7 @@
 ## INITIALISATION
 
 1. Clonez le dépôt GitHub sur votre machine locale (https://github.com/evabessette/Pokehack).
-2. Créez une base de données PostgreSQL nommée "PokeHack".
+2. Créez une base de données PostgreSQL nommée "pokehack".
 3. Exécutez le script `database/schema.sql` pour créer les tables nécessaires.
 4. Créez un fichier `config.properties` dans `src/main/resources` avec vos informations de connexion (ex: config.properties.example).
 
@@ -57,3 +57,5 @@ https://github.com/evabessette/Pokehack
 https://pokedex-examen-mi-session.vercel.app/
 
 https://pokeapi.co/api/v2/pokemon
+
+<a href="https://www.flaticon.com/free-icons/dice" title="dice icons">Dice icon created by bearicons - Flaticon</a>
