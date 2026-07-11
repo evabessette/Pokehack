@@ -38,7 +38,6 @@
         │       └── view
         │           └── PokemonViewFx.java
         └── resources
-            ├── config.properties
             ├── config.properties.exemple
             ├── fonts
             │   ├── OFL.txt
