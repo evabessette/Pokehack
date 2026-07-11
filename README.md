@@ -16,32 +16,43 @@
 
 ## STRUCTURE DU PROJET
 ```
-pokehack/
-├── pom.xml
 ├── README.md
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── ca/cmaisonneuve/pokehack/
-│   │   │       ├── MainApp.java
-│   │   │       ├── controller/
-│   │   │       │   └── PokemonController.java
-│   │   │       ├── dao/
-│   │   │       │   └── PokemonDao.java
-│   │   │       ├── database/
-│   │   │       │   └── DatabaseManager.java
-│   │   │       ├── model/
-│   │   │       │   └── Pokemon.java
-│   │   │       ├── service/
-│   │   │       │   └── PokemonApiService.java
-│   │   │       └── view/
-│   │   │           └── PokemonView.java
-│   │   └── resources/
-│   │       ├── fonts/
-│   │       ├── styles.css
-│   │       ├── schema.sql
-│   │       └── config.properties.example
-│   │           
+├── pom.xml
+└── src
+    └── main
+        ├── java
+        │   └── pokehack
+        │       ├── Main.java
+        │       ├── MainFx.java
+        │       ├── TestApi.java
+        │       ├── controller
+        │       │   └── PokemonController.java
+        │       ├── modele
+        │       │   ├── Pokemon.java
+        │       │   └── PokemonDAO.java
+        │       ├── service
+        │       │   └── PokemonApiService.java
+        │       ├── utils
+        │       │   ├── Config.java
+        │       │   └── Connexion.java
+        │       └── view
+        │           └── PokemonViewFx.java
+        └── resources
+            ├── config.properties
+            ├── config.properties.exemple
+            ├── fonts
+            │   ├── OFL.txt
+            │   └── PressStart2P-Regular.ttf
+            ├── images
+            │   ├── capture.gif
+            │   ├── capture_3.png
+            │   ├── capture_4.png
+            │   ├── dice.png
+            │   ├── pokeball.png
+            │   ├── pokemon.png
+            │   └── trash.png
+            ├── schema.sql
+            └── style.css
 ```
 
 ## DATABASE
