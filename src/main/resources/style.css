@@ -71,6 +71,7 @@
 .height-value {
     -fx-background-color: -fx-couleur-fond;
     -fx-font-size: x-large;
+    -fx-font-weight: bold;
     -fx-text-fill: -fx-couleur-secondaire;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
