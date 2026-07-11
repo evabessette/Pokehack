@@ -276,14 +276,6 @@
     -fx-font-size: 10px;
     -fx-padding: 5px 7px;
 }
-
-.random-button,
-.random-button:hover,
-.random-button:pressed {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-padding: 4;
-    -fx-cursor: hand;
 /* Confirmation de suppression */
 .confirmation-suppression {
     -fx-background-color: -fx-couleur-alert
@@ -393,4 +385,13 @@
 
 .type-fee {
     -fx-background-color: -fx-type-fee;
+}
+
+.random-button,
+.random-button:hover,
+.random-button:pressed {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 4;
+    -fx-cursor: hand;
 }
