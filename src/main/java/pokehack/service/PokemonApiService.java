@@ -83,6 +83,19 @@ public class PokemonApiService {
             pokemon.secondary_type_icon = chercherIconeType(pokemon.secondary_type);
         }
 
+        String nomCri = pokemon.name
+                .toLowerCase()
+                .trim()
+                .replace(" ", "")
+                .replace(".", "")
+                .replace("'", "")
+                .replace("’", "");
+
+        pokemon.cries =
+                "https://play.pokemonshowdown.com/audio/cries/"
+                        + nomCri
+                        + ".mp3";
+
         pokemon.weight = root.path("weight").asDouble();
         pokemon.height = root.path("height").asDouble();
 

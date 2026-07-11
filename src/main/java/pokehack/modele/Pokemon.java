@@ -10,6 +10,7 @@ public class Pokemon {
     public String secondary_type_icon;
     public String primary_type_name;
     public String secondary_type_name;
+    public String cries;
     public int hp;
     public int attack;
     public int defense;
@@ -39,6 +40,7 @@ public class Pokemon {
                 ", secondary_type_icon='" + secondary_type_icon + '\'' +
                 ", primary_type_name='" + primary_type_name + '\'' +
                 ", secondary_type_name='" + secondary_type_name + '\'' +
+                ", cries='" + cries + '\'' +
                 ", hp=" + hp +
                 ", attack=" + attack +
                 ", defense=" + defense +

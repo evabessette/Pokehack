@@ -86,13 +86,13 @@ public class PokemonViewFx {
         imagePokemon.setPreserveRatio(true);
         imagePokemon.setSmooth(false);
 
-        // Input nom pokemon pour recherche
+        // ----- Input nom pokemon pour recherche -----
         champNomPokemon = new TextField();
         champNomPokemon.setPromptText("Entrez le nom ou l'ID du Pokémon");
         HBox.setHgrow(champNomPokemon, Priority.ALWAYS);
         champNomPokemon.getStyleClass().add("champ-nom-pokemon");
 
-        // Button attraper
+        // ----- Button attraper -----
         catchButton = new Button("Attraper");
         ImageView pokeballIcon = new ImageView(
             Objects.requireNonNull(
@@ -291,11 +291,12 @@ public class PokemonViewFx {
         recherche = new HBox(16, champAvecRandom, catchButton);
         recherche.setMaxWidth(Double.MAX_VALUE);
 
+        // ----- Card principal -----
         card = new VBox(
                 10,
                 nomPokemon,
-                animationPokemon,
                 idPokemon,
+                animationPokemon,
                 types,
                 measurements,
                 statistiquesTitre,
@@ -312,8 +313,7 @@ public class PokemonViewFx {
         recherche.getStyleClass().add("recherche");
 
         // ------ INVENTAIRE -------
-
-        // ----- TYPES
+        // ----- Types -----
         primaryTypeIcon = new ImageView();
         primaryTypeIcon.setFitHeight(24);
         primaryTypeIcon.setFitWidth(24);
@@ -349,7 +349,6 @@ public class PokemonViewFx {
                         "Image introuvable : /images/pokemon.png"
                 ).toExternalForm()
         );
-
         imageInventaire.setFitWidth(120);
         imageInventaire.setFitHeight(120);
         imageInventaire.setPreserveRatio(true);
@@ -362,8 +361,8 @@ public class PokemonViewFx {
         // ----- Liste -----
         listePokemon = new VBox(8);
         listePokemon.setAlignment(Pos.TOP_LEFT);
-        ScrollPane scrollInventaire = new ScrollPane(listePokemon);
 
+        ScrollPane scrollInventaire = new ScrollPane(listePokemon);
         scrollInventaire.setFitToWidth(true);
         scrollInventaire.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollInventaire.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
@@ -372,6 +371,7 @@ public class PokemonViewFx {
 
         VBox.setVgrow(scrollInventaire, Priority.ALWAYS);
 
+        // ----- Panel inventaire -----
         inventairePanel = new VBox(
                 12,
                 imageInventaire,
@@ -397,6 +397,7 @@ public class PokemonViewFx {
         contenuPrincipal.setPadding(new Insets(24, 24, 0, 24));
         contenuPrincipal.setMaxHeight(Double.MAX_VALUE);
 
+        // ----- Layout Principal -----
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
         layoutPrincipal.setMaxWidth(Double.MAX_VALUE);
         layoutPrincipal.setMinHeight(HAUTEUR);
@@ -451,10 +452,12 @@ public class PokemonViewFx {
         }
 
         for (Pokemon pokemon : pokemons) {
+            // ----- Nom du Pokémon -----
             Label nom = new Label(
                     capitaliser(pokemon.name) + " #" + pokemon.id
             );
             nom.getStyleClass().add("pokemon-inventaire-nom");
+            // ----- Clic sur le nom pour voir les détails -----
             nom.setOnMouseClicked(event -> onVoir.accept(pokemon));
             nom.setCursor(javafx.scene.Cursor.HAND);
 
@@ -486,8 +489,8 @@ public class PokemonViewFx {
             iconePoubelle.setFitHeight(18);
             iconePoubelle.setPreserveRatio(true);
 
+            // ----- Bouton supprimer transparent pour fond -----
             Button supprimer = new Button();
-
             supprimer.setMinSize(30, 30);
             supprimer.setPrefSize(30, 30);
             supprimer.setMaxSize(30, 30);
@@ -498,6 +501,7 @@ public class PokemonViewFx {
                 onSupprimer.accept(pokemon);
             });
 
+            // ----- Espacement dans la ligne -----
             Region espace = new Region();
             HBox.setHgrow(espace, Priority.ALWAYS);
 
@@ -534,10 +538,12 @@ public class PokemonViewFx {
         return imageView;
     }
 
+    // ----- Racine de la vue -----
     public Parent getRoot() {
         return racine;
     }
 
+    // ----- Méthode utilitaire pour capitaliser le nom du Pokémon -----
     private String capitaliser(String texte) {
         if (texte == null || texte.isBlank()) {
             return "";
@@ -546,6 +552,7 @@ public class PokemonViewFx {
         return texte.substring(0, 1).toUpperCase() + texte.substring(1);
     }
 
+    // ----- Redimensionner la fenêtre lors de l'affichage ou la fermeture de l'inventaire -----
     private void resizeWindowForInventory(boolean inventoryVisible) {
         Stage stage = (Stage) racine.getScene().getWindow();
 
