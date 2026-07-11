@@ -38,6 +38,7 @@ public class PokemonViewFx {
     public final ImageView gifCapture;
     public final Button catchButton;
     public final ToggleButton inventoryToggle;
+    public final Button randomButton;
 
     private final HBox racine;
     private final HBox measurements;
@@ -129,6 +130,11 @@ public class PokemonViewFx {
         // ----- Inventaire -----
         inventoryToggle = new ToggleButton("Montrer l'inventaire");
         inventoryToggle.getStyleClass().add("toggle-inventaire");
+        VBox.setMargin(inventoryToggle, new Insets(12, 0, 0, 0));
+
+        inventoryToggle.setPrefWidth(165);
+        inventoryToggle.setMinWidth(165);
+        inventoryToggle.setAlignment(Pos.CENTER);
 
         // ----- Message -----
         messageErreur = new Label();
@@ -156,7 +162,7 @@ public class PokemonViewFx {
         idPokemon = new Label("#1");
         idPokemon.getStyleClass().add("id-pokemon");
 
-        hp = new Label("HP ");
+        hp = new Label("HP");
         hpProgress = new ProgressBar(0.50);
         hpProgress.getStyleClass().add("hp-progress");
         hpProgress.setMaxWidth(Double.MAX_VALUE);
@@ -199,6 +205,31 @@ public class PokemonViewFx {
         measurements.setAlignment(Pos.CENTER);
 
         // ----- Statistiques du pokemon -----
+
+        // ------ 1) aligner les barres de progrès ----
+
+        hp.setPrefWidth(40);
+        attack.setPrefWidth(40);
+        defense.setPrefWidth(40);
+        speed.setPrefWidth(40);
+
+        hpNumber.setPrefWidth(35);
+        atkNumber.setPrefWidth(35);
+        defNumber.setPrefWidth(35);
+        spdNumber.setPrefWidth(35);
+
+        hp.setAlignment(Pos.CENTER_RIGHT);
+        attack.setAlignment(Pos.CENTER_RIGHT);
+        defense.setAlignment(Pos.CENTER_RIGHT);
+        speed.setAlignment(Pos.CENTER_RIGHT);
+
+        hpNumber.setAlignment(Pos.CENTER_LEFT);
+        atkNumber.setAlignment(Pos.CENTER_LEFT);
+        defNumber.setAlignment(Pos.CENTER_LEFT);
+        spdNumber.setAlignment(Pos.CENTER_LEFT);
+
+        // ------2) Création des HBox pour chaque stat -----
+
         statsBarHP = new HBox(10, hp, hpProgress, hpNumber);
         statsBarHP.setAlignment(Pos.CENTER);
         statsBarHP.setMaxWidth(Double.MAX_VALUE);
@@ -223,8 +254,41 @@ public class PokemonViewFx {
         stats.setAlignment(Pos.CENTER);
         stats.setMaxWidth(Double.MAX_VALUE);
 
+
+        // ---- Bouton random ----
+
+        randomButton = new Button();
+        randomButton.getStyleClass().add("random-button");
+
+        ImageView diceIcon = new ImageView(
+                Objects.requireNonNull(
+                        getClass().getResource("/images/dice.png"),
+                        "Image introuvable : /images/dice.png"
+                ).toExternalForm()
+        );
+
+        randomButton.setGraphic(diceIcon);
+
+        diceIcon.setFitWidth(25);
+        diceIcon.setFitHeight(25);
+        diceIcon.setPreserveRatio(true);
+
+        champNomPokemon.setMaxWidth(Double.MAX_VALUE);
+        champNomPokemon.setPadding(new Insets(12, 48, 12, 16));
+
+        randomButton.setMinSize(36, 36);
+        randomButton.setPrefSize(36, 36);
+        randomButton.setMaxSize(36, 36);
+        randomButton.setFocusTraversable(false);
+
+        StackPane champAvecRandom = new StackPane(champNomPokemon, randomButton);
+        StackPane.setAlignment(randomButton, Pos.CENTER_RIGHT);
+        StackPane.setMargin(randomButton, new Insets(0, 6, 0, 0));
+
+        HBox.setHgrow(champAvecRandom, Priority.ALWAYS);
+
         // ------ Input rechercher -----
-        recherche = new HBox(16, champNomPokemon, catchButton);
+        recherche = new HBox(16, champAvecRandom, catchButton);
         recherche.setMaxWidth(Double.MAX_VALUE);
 
         // ----- Card principal -----
@@ -322,10 +386,16 @@ public class PokemonViewFx {
         inventairePanel.setAlignment(Pos.TOP_CENTER);
 
         // ----- Contenu Principal -----
-        VBox contenuPrincipal = new VBox(recherche, card, messageErreur);
+
+        Region espaceVide = new Region();
+        VBox.setVgrow(espaceVide, Priority.ALWAYS);
+
+
+        VBox contenuPrincipal = new VBox(recherche, card, espaceVide, messageErreur);
         contenuPrincipal.setMinWidth(LARGEUR_MIN_CONTENU_PRINCIPAL);
         contenuPrincipal.setMaxWidth(Double.MAX_VALUE);
-        contenuPrincipal.setPadding(new Insets(24));
+        contenuPrincipal.setPadding(new Insets(24, 24, 0, 24));
+        contenuPrincipal.setMaxHeight(Double.MAX_VALUE);
 
         // ----- Layout Principal -----
         layoutPrincipal = new HBox(contenuPrincipal, inventairePanel);
@@ -336,12 +406,17 @@ public class PokemonViewFx {
         HBox.setHgrow(contenuPrincipal, Priority.ALWAYS);
         HBox.setHgrow(inventairePanel, Priority.NEVER);
 
+        messageErreur.setMaxWidth(Double.MAX_VALUE);
+        messageErreur.setAlignment(Pos.CENTER);
+
+
         // ----- Contenu Inventaire -----
         inventairePanel.setVisible(false);
         inventairePanel.setManaged(false);
 
         inventoryToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             if (isSelected) {
+                inventoryToggle.setText("Fermer l'inventaire");
                 resizeWindowForInventory(true);
 
                 Platform.runLater(() -> {
@@ -349,6 +424,7 @@ public class PokemonViewFx {
                     inventairePanel.setManaged(true);
                 });
             } else {
+                inventoryToggle.setText("Montrer l'inventaire");
                 inventairePanel.setVisible(false);
                 inventairePanel.setManaged(false);
                 resizeWindowForInventory(false);
