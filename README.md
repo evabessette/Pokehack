@@ -11,7 +11,7 @@
 2. Créez une base de données PostgreSQL nommée "pokehack".
 3. Exécutez le script `database/schema.sql` pour créer les tables nécessaires.
 4. Créez un fichier `config.properties` dans `src/main/resources` avec vos informations de connexion (ex: config.properties.example).
-5. Allez dans Run > Edit configurations... > Modify options > Add VM options, et coller "--module-path "insert-your-path\javafx-sdk-26.0.1\lib" --add-modules javafx.controls,javafx.media" dedans.
+5. Allez dans Run > Edit configurations... > Modify options > Add VM options, et coller `--module-path "insert-your-path\javafx-sdk-26.0.1\lib" --add-modules javafx.controls,javafx.media` dedans.
 
 
 ## STRUCTURE DU PROJET
