@@ -104,9 +104,6 @@ public class PokemonController {
             try {
                 Pokemon pokemon = apiService.rechercherPokemon(recherche);
 
-                pokemonDAO.capturer(pokemon);
-                chargerInventaire();
-
                 mettreAJourVue(pokemon);
                 vue.messageErreur.setText("");
             } catch (Exception ex) {
