@@ -9,11 +9,7 @@
             #588fc0,
             #b0cce7
     );
-    -fx-couleur-alert: linear-gradient(
-            to bottom right,
-            #f44b3b,
-            #f89186
-    );
+
     -fx-couleur-texte: derive(-fx-couleur-primaire, -20%);
 
     /* Couleurs des 18 types */
@@ -288,6 +284,7 @@
 .confirmation-suppression .content.label {
     -fx-text-fill: -fx-couleur-primaire;
     -fx-font-size: 14px;
+    -fx-padding: 0px 0px 10px 10px;
 }
 
 .confirmation-suppression .button-bar {
